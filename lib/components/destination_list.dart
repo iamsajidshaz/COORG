@@ -11,16 +11,21 @@ class DestinationsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 150,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(image),
-          fit: BoxFit.cover,
+    return Column(
+      children: [
+        Container(
+          width: 150,
+          height: 200,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(image),
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Center(child: Text(text)),
+        Text(text)
+      ],
     );
   }
 }

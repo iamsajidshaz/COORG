@@ -5,11 +5,15 @@ class PlacesList extends StatelessWidget {
   final String text;
   final String image;
   final String desc;
+  final String lat;
+  final String lang;
   const PlacesList({
     super.key,
     required this.text,
     required this.image,
     required this.desc,
+    required this.lat,
+    required this.lang,
   });
 
   @override
@@ -28,10 +32,10 @@ class PlacesList extends StatelessWidget {
                     imageThree: image,
                     facOne: "Parking",
                     facTwo: "Food",
-                    facThree: "Resting",
+                    facThree: "Guides",
                     desc: desc,
-                    lat: "123456789",
-                    lang: "789456123",
+                    lat: lat,
+                    lang: lang,
                   )),
         );
       },

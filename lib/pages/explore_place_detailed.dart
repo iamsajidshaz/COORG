@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:readmore/readmore.dart';
 
 class DetailedPlace extends StatelessWidget {
@@ -68,7 +69,9 @@ class DetailedPlace extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       RawMaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         elevation: 2.0,
                         fillColor: Colors.white,
                         child: Icon(
@@ -113,11 +116,11 @@ class DetailedPlace extends StatelessWidget {
                         children: [
                           Text(
                             "$place, $dest",
-                            // style: Styles.headLineStyle2,
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           Icon(
                             Icons.place,
-                            color: Colors.grey,
+                            color: Colors.red,
                           )
                         ],
                       ),
@@ -139,7 +142,8 @@ class DetailedPlace extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "Faciliies",
+                            "Facilities",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                             // style: Styles.headLineStyle3
                             //     .copyWith(color: Colors.black87),
                           ),
@@ -164,7 +168,10 @@ class DetailedPlace extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.local_parking),
+                                Icon(
+                                  Icons.local_parking,
+                                  color: Colors.red,
+                                ),
                                 Text(facOne),
                               ],
                             ),
@@ -179,7 +186,10 @@ class DetailedPlace extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.food_bank),
+                                Icon(
+                                  Icons.food_bank,
+                                  color: Colors.green,
+                                ),
                                 Text(facTwo),
                               ],
                             ),
@@ -195,7 +205,10 @@ class DetailedPlace extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.description),
+                                Icon(
+                                  Icons.description,
+                                  color: Colors.blue,
+                                ),
                                 Text(facThree),
                               ],
                             ),
@@ -210,6 +223,7 @@ class DetailedPlace extends StatelessWidget {
                         children: [
                           Text(
                             "Descripion",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                             //  style: Styles.headLineStyle3
                             //       .copyWith(color: Colors.black87),
                           ),
@@ -246,6 +260,7 @@ class DetailedPlace extends StatelessWidget {
                         children: [
                           Text(
                             "Gallery",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                             //   style: Styles.headLineStyle3
                             //   .copyWith(color: Colors.black87),
                           ),
@@ -346,12 +361,11 @@ class DetailedPlace extends StatelessWidget {
                           minimumSize: const Size.fromHeight(50),
                           shape: const StadiumBorder(),
                         ),
-                        onPressed: () {},
-                        // onPressed: () => MapsLauncher.launchCoordinates(
-                        //   double.parse(lat.toString()),
-                        //   double.parse(lang.toString()),
-                        //   place,
-                        // ),
+                        onPressed: () => MapsLauncher.launchCoordinates(
+                          double.parse(lat.toString()),
+                          double.parse(lang.toString()),
+                          place,
+                        ),
                         child: Text(
                           'Get Location',
                           style: const TextStyle(
