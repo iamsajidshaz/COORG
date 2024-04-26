@@ -1,6 +1,7 @@
 import 'package:coorg/pages/main_splash_screen.dart';
 import 'package:coorg/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,10 +16,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const MainSplashScreen(),
-      theme: Provider.of<ThemeProvider>(context).themeData,
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      builder: (context, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const MainSplashScreen(),
+        theme: Provider.of<ThemeProvider>(context).themeData,
+      ),
     );
   }
 }

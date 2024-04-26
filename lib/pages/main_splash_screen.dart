@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:coorg/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainSplashScreen extends StatefulWidget {
   const MainSplashScreen({super.key});
@@ -37,7 +38,7 @@ class _MainSplashScreenState extends State<MainSplashScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: const Center(
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -46,7 +47,7 @@ class _MainSplashScreenState extends State<MainSplashScreen> {
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 50,
+                  fontSize: 40.sp,
                 ),
               ),
               SizedBox(
@@ -56,7 +57,7 @@ class _MainSplashScreenState extends State<MainSplashScreen> {
                 'T H E   E X P L O R E R   A P P',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 15,
+                  fontSize: 12.sp,
                 ),
               ),
             ],

@@ -1,6 +1,7 @@
 import 'package:coorg/themes/theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -10,12 +11,16 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings"),
+        title: Text(
+          "Settings",
+          style: TextStyle(fontSize: 20.sp),
+        ),
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
+          // theme changer
           Container(
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.secondary,
@@ -31,6 +36,7 @@ class SettingsPage extends StatelessWidget {
                   "Dark Mode",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
+                    fontSize: 12.sp,
                   ),
                 ),
 
@@ -44,7 +50,47 @@ class SettingsPage extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
+          // extra settings
+          SizedBox(
+            height: 10.h,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            margin: const EdgeInsets.only(left: 25, top: 10, right: 25),
+            padding: const EdgeInsets.all(25),
+            child: Center(
+              child: Text(
+                "Additional Settings coming soon",
+                style: TextStyle(
+                  fontSize: 12.sp,
+                ),
+              ),
+            ),
+          ),
+
+          //
+          const Spacer(),
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            margin: const EdgeInsets.only(left: 25, top: 10, right: 25),
+            padding: const EdgeInsets.all(25),
+            child: Center(
+              child: Text(
+                'Made with ❤ by ShazTech',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.sp),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
         ],
       ),
     );

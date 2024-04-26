@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:readmore/readmore.dart';
 
@@ -35,8 +36,8 @@ class DetailedPlace extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
+        width: double.maxFinite.w,
+        height: double.maxFinite.h,
         child: Stack(
           children: [
             //
@@ -47,7 +48,7 @@ class DetailedPlace extends StatelessWidget {
                 tag: imageUrl,
                 child: Container(
                   width: double.maxFinite,
-                  height: 350,
+                  height: 220.h,
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.background,
                     image: DecorationImage(
@@ -64,7 +65,7 @@ class DetailedPlace extends StatelessWidget {
               right: 5,
               top: 60,
               child: Container(
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width.w,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -74,12 +75,12 @@ class DetailedPlace extends StatelessWidget {
                         },
                         elevation: 2.0,
                         fillColor: Colors.white,
+                        shape: const CircleBorder(),
                         child: Icon(
                           Icons.arrow_back_ios,
-                          size: 15.0,
+                          size: 12.sp,
                           color: Colors.black87,
                         ),
-                        shape: CircleBorder(),
                       ),
                       RawMaterialButton(
                         onPressed: () {},
@@ -88,7 +89,7 @@ class DetailedPlace extends StatelessWidget {
                         shape: const CircleBorder(),
                         child: Icon(
                           Icons.favorite_outline,
-                          size: 15.0,
+                          size: 12.sp,
                           color: Colors.red,
                         ),
                       ),
@@ -100,8 +101,8 @@ class DetailedPlace extends StatelessWidget {
               top: 320,
               child: Container(
                 padding: const EdgeInsets.only(top: 30, right: 20, left: 20),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height - 300,
+                width: 360.w,
+                height: 690.h - 320,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
                   borderRadius: const BorderRadius.only(
@@ -116,52 +117,59 @@ class DetailedPlace extends StatelessWidget {
                         children: [
                           Text(
                             "$place, $dest",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.sp,
+                            ),
                           ),
                           Icon(
                             Icons.place,
                             color: Colors.red,
+                            size: 24.sp,
                           )
                         ],
                       ),
 
                       //
                       //  const Gap(10),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: 10.h,
                       ),
                       Divider(
-                        color: Colors.grey,
-                        thickness: 1,
+                        color: Colors.grey.shade500,
+                        thickness: 1.w,
                       ),
                       //
                       //  const Gap(30),
-                      const SizedBox(
-                        height: 30,
+                      SizedBox(
+                        height: 20.h,
                       ),
                       Row(
                         children: [
                           Text(
                             "Facilities",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.sp,
+                            ),
                             // style: Styles.headLineStyle3
                             //     .copyWith(color: Colors.black87),
                           ),
                         ],
                       ),
                       //  const Gap(20),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: 10.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            height: 75,
-                            width: MediaQuery.of(context).size.width * 0.25,
+                            height: 50.h,
+                            width: 360.w * 0.25,
                             decoration: BoxDecoration(
                               color: Theme.of(context).colorScheme.tertiary,
-                              borderRadius: BorderRadius.all(
+                              borderRadius: const BorderRadius.all(
                                 Radius.circular(10),
                               ),
                             ),
@@ -171,36 +179,48 @@ class DetailedPlace extends StatelessWidget {
                                 Icon(
                                   Icons.local_parking,
                                   color: Colors.red,
+                                  size: 20.sp,
                                 ),
-                                Text(facOne),
+                                Text(
+                                  facOne,
+                                  style: TextStyle(
+                                    fontSize: 10.sp,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                           Container(
-                            height: 75,
-                            width: MediaQuery.of(context).size.width * 0.25,
+                            height: 50.h,
+                            width: 360.w * 0.25,
                             decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.tertiary,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
                                   Icons.food_bank,
                                   color: Colors.green,
+                                  size: 20.sp,
                                 ),
-                                Text(facTwo),
+                                Text(
+                                  facTwo,
+                                  style: TextStyle(
+                                    fontSize: 10.sp,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                           Container(
-                            height: 75,
-                            width: MediaQuery.of(context).size.width * 0.25,
+                            height: 50.h,
+                            width: 360.w * 0.25,
                             decoration: BoxDecoration(
                               color: Theme.of(context).colorScheme.tertiary,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                                  const BorderRadius.all(Radius.circular(10)),
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -208,67 +228,85 @@ class DetailedPlace extends StatelessWidget {
                                 Icon(
                                   Icons.description,
                                   color: Colors.blue,
+                                  size: 20.sp,
                                 ),
-                                Text(facThree),
+                                Text(
+                                  facThree,
+                                  style: TextStyle(
+                                    fontSize: 10.sp,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                         ],
                       ),
                       //  const Gap(20),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: 20.h,
                       ),
                       Row(
                         children: [
                           Text(
                             "Descripion",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.sp,
+                            ),
                             //  style: Styles.headLineStyle3
                             //       .copyWith(color: Colors.black87),
                           ),
                         ],
                       ),
                       // const Gap(20),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: 10.h,
                       ),
                       Row(
                         children: [
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.90,
+                            width: 360.w * 0.90,
                             child: ReadMoreText(
                               desc,
+                              style: TextStyle(fontSize: 12.sp),
                               trimLines: 2,
                               colorClickableText: Colors.pink,
                               trimMode: TrimMode.Line,
-                              trimCollapsedText: 'show more',
+                              trimCollapsedText: 'show more...',
                               trimExpandedText: 'show less',
                               moreStyle: TextStyle(
-                                fontSize: 14,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.green,
+                                color: Colors.blue,
+                              ),
+                              lessStyle: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue,
                               ),
                             ),
                           )
                         ],
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: 20.h,
                       ),
                       Row(
                         children: [
                           Text(
                             "Gallery",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.sp,
+                            ),
                             //   style: Styles.headLineStyle3
                             //   .copyWith(color: Colors.black87),
                           ),
                         ],
                       ),
                       //  const Gap(20),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: 10.h,
                       ),
 
                       Row(
@@ -284,16 +322,16 @@ class DetailedPlace extends StatelessWidget {
                               //   );
                             },
                             child: Container(
-                              height: 130,
-                              width: MediaQuery.of(context).size.width * .28,
+                              height: 100.w,
+                              width: 360.w * .28,
                               decoration: BoxDecoration(
                                   color: Colors.grey,
                                   image: DecorationImage(
                                     image: AssetImage(imageOne),
                                     fit: BoxFit.cover,
                                   ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15))),
                             ),
                           ),
                           GestureDetector(
@@ -306,8 +344,8 @@ class DetailedPlace extends StatelessWidget {
                               // );
                             },
                             child: Container(
-                              height: 130,
-                              width: MediaQuery.of(context).size.width * .28,
+                              height: 100.w,
+                              width: 360.w * .28,
                               decoration: BoxDecoration(
                                   color: Colors.grey,
                                   image: DecorationImage(
@@ -316,8 +354,8 @@ class DetailedPlace extends StatelessWidget {
                                     //     "assets/images/coorg/abby.jpg"),
                                     fit: BoxFit.cover,
                                   ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15))),
                             ),
                           ),
                           GestureDetector(
@@ -330,35 +368,35 @@ class DetailedPlace extends StatelessWidget {
                               // );
                             },
                             child: Container(
-                              height: 130,
-                              width: MediaQuery.of(context).size.width * .28,
+                              height: 100.w,
+                              width: 360.w * .28,
                               decoration: BoxDecoration(
                                   color: Colors.grey,
                                   image: DecorationImage(
                                     image: AssetImage(imageThree),
                                     fit: BoxFit.cover,
                                   ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15))),
                             ),
                           ),
                         ],
                       ),
 
                       //   const Gap(30),
-                      const SizedBox(
-                        height: 30,
+                      SizedBox(
+                        height: 30.h,
                       ),
 
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           //   primary: Colors.green,
                           backgroundColor: Colors.blue,
-                          textStyle: const TextStyle(
-                            fontSize: 24,
+                          textStyle: TextStyle(
+                            fontSize: 24.sp,
                             color: Colors.white,
                           ),
-                          minimumSize: const Size.fromHeight(50),
+                          minimumSize: Size.fromHeight(40.h),
                           shape: const StadiumBorder(),
                         ),
                         onPressed: () => MapsLauncher.launchCoordinates(
@@ -368,16 +406,16 @@ class DetailedPlace extends StatelessWidget {
                         ),
                         child: Text(
                           'Get Location',
-                          style: const TextStyle(
-                            fontSize: 24,
+                          style: TextStyle(
+                            fontSize: 18.sp,
                             color: Colors.white,
                           ),
                           // style: Styles.headLineStyle2
                           //     .copyWith(color: Colors.white),
                         ),
                       ),
-                      const SizedBox(
-                        height: 30,
+                      SizedBox(
+                        height: 20.h,
                       ),
                     ],
                   ),

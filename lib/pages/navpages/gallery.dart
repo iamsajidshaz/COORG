@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../components/single_gallery_item.dart';
 
@@ -29,13 +30,22 @@ class GalleryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("COORG GALLERY"),
-        leading: Icon(CupertinoIcons.photo_on_rectangle),
+        title: Text(
+          "COORG GALLERY",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 12.sp,
+          ),
+        ),
+        leading: Icon(
+          CupertinoIcons.photo_on_rectangle,
+          size: 24.sp,
+        ),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
       body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
         itemCount: _gallery_images.length,

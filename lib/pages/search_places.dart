@@ -1,6 +1,7 @@
 import 'package:coorg/components/places.dart';
 import 'package:coorg/pages/explore_place_detailed.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchPlaces extends StatefulWidget {
   const SearchPlaces({super.key});
@@ -90,7 +91,10 @@ class _SearchPlacesState extends State<SearchPlaces> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("EXPLORE COORG"),
+        title: Text(
+          "EXPLORE COORG",
+          style: TextStyle(fontSize: 20.sp),
+        ),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
@@ -102,11 +106,15 @@ class _SearchPlacesState extends State<SearchPlaces> {
             child: TextField(
               controller: controller,
               decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
+                prefixIcon: Icon(
+                  Icons.search,
+                  size: 20.sp,
+                ),
                 hintText: 'Where do you want to go...',
+                hintStyle: TextStyle(fontSize: 12.sp),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Colors.black),
+                  borderSide: const BorderSide(color: Colors.black),
                 ),
               ),
               onChanged: searchPlace,
@@ -145,7 +153,7 @@ class _SearchPlacesState extends State<SearchPlaces> {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Container(
-                      height: 160,
+                      height: 100.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Theme.of(context).colorScheme.secondary,
@@ -158,16 +166,29 @@ class _SearchPlacesState extends State<SearchPlaces> {
                             child: Image.asset(
                               place.urlImage,
                               fit: BoxFit.cover,
-                              width: 150,
-                              height: 150,
+                              width: 150.w,
+                              height: 100.h,
                             ),
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(place.title),
-                              Text(place.subTitle),
+                              Text(
+                                place.title,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Text(
+                                place.subTitle,
+                                style: TextStyle(
+                                  fontSize: 10.sp,
+                                ),
+                              ),
                             ],
                           )
                         ],

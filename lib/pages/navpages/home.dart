@@ -3,6 +3,7 @@ import 'package:coorg/components/place_list.dart';
 import 'package:coorg/pages/search_places.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../settings_page.dart';
 
@@ -147,12 +148,15 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // icon
-              const Icon(CupertinoIcons.home),
+              Icon(
+                CupertinoIcons.home,
+                size: 24.sp,
+              ),
 
               // text
-              const Text(
+              Text(
                 "C O O R G   E X P L O R E R",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
               ),
 
               // icon
@@ -163,34 +167,35 @@ class _HomeState extends State<Home> {
                       MaterialPageRoute(
                           builder: (context) => const SettingsPage()));
                 },
-                icon: const Icon(
+                icon: Icon(
                   CupertinoIcons.heart_fill,
                   color: Colors.red,
+                  size: 24.sp,
                 ),
               ),
             ],
           ),
         ),
 
-        const SizedBox(
-          height: 20,
+        SizedBox(
+          height: 20.h,
         ),
         Container(
           margin: const EdgeInsets.only(left: 20),
-          child: const Text(
+          child: Text(
             'Where do you want',
-            style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold),
           ),
         ),
         Container(
           margin: const EdgeInsets.only(left: 20),
-          child: const Text(
+          child: Text(
             'to go?',
-            style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 28.sp, fontWeight: FontWeight.bold),
           ),
         ),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: 10.h,
         ),
         // search bar
         Padding(
@@ -214,17 +219,18 @@ class _HomeState extends State<Home> {
               child: Row(
                 //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.search,
                     color: Color(0xffBFC205),
+                    size: 24.sp,
                   ),
-                  const SizedBox(
-                    width: 5,
+                  SizedBox(
+                    width: 5.w,
                   ),
                   Text(
                     'Search',
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
@@ -233,23 +239,23 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: 8.h,
         ),
 
         // header
-        const Padding(
-          padding: EdgeInsets.only(left: 25.0, top: 25, right: 25),
+        Padding(
+          padding: const EdgeInsets.only(left: 25.0, top: 25, right: 25),
           child: Text(
             'Explore Places',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
           ),
         ),
 
         // places
         Container(
           margin: const EdgeInsets.only(left: 25, top: 12),
-          height: 280,
+          height: 180.h,
           child: Padding(
             padding: const EdgeInsets.only(right: 12),
             child: ListView.builder(
@@ -272,11 +278,11 @@ class _HomeState extends State<Home> {
         ),
 
         // header
-        const Padding(
-          padding: EdgeInsets.only(left: 25.0, top: 25, right: 25),
+        Padding(
+          padding: const EdgeInsets.only(left: 25.0, top: 25, right: 25),
           child: Text(
             'Popular Destinations in Coorg',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
           ),
         ),
 
@@ -284,7 +290,7 @@ class _HomeState extends State<Home> {
 
         Container(
           margin: const EdgeInsets.only(left: 25, top: 12),
-          height: 250,
+          height: 150.h,
           child: Padding(
             padding: const EdgeInsets.only(right: 12),
             child: ListView.builder(
@@ -303,11 +309,14 @@ class _HomeState extends State<Home> {
           ),
         ),
         // header
-        const Padding(
-          padding: EdgeInsets.only(left: 25.0, top: 25, right: 25),
+        Padding(
+          padding: const EdgeInsets.only(left: 25.0, top: 25, right: 25),
           child: Text(
             'Picture of the day',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 12.sp,
+            ),
           ),
         ),
 
@@ -315,7 +324,7 @@ class _HomeState extends State<Home> {
         Padding(
           padding: const EdgeInsets.only(top: 25.0, left: 25, right: 12),
           child: Container(
-            height: 250,
+            height: 200.h,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/images/raja_seat.jpg"),
@@ -333,7 +342,7 @@ class _HomeState extends State<Home> {
           child: Center(
             child: Text(
               'Made with ❤ by ShazTech',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.sp),
             ),
           ),
         ),
