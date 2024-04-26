@@ -29,7 +29,9 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
             ),
-
+            const SizedBox(
+              height: 50,
+            ),
             // picture
             Padding(
               padding: const EdgeInsets.all(12.0),
@@ -44,7 +46,9 @@ class AboutPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12)),
               ),
             ),
-
+            const SizedBox(
+              height: 50,
+            ),
             // about coorg
             Center(
               child: Text(
@@ -74,9 +78,13 @@ class AboutPage extends StatelessWidget {
               ),
             ),
 
+            const SizedBox(
+              height: 50,
+            ),
+
             // contact admin
-            Padding(
-              padding: const EdgeInsets.all(12.0),
+            const Padding(
+              padding: EdgeInsets.all(12.0),
               child: Center(
                 child: Text(
                   "Need an App like this? Contact Us",
@@ -109,7 +117,7 @@ class AboutPage extends StatelessWidget {
                   ),
                   FlutterSocialButton(
                     onTap: () async {
-                      var whatsappUrl = "whatsapp://send?phone=+917406677096";
+                      var whatsappUrl = "https://www.facebook.com/sajidshaz611";
                       try {
                         launch(whatsappUrl);
                       } catch (e) {
@@ -122,26 +130,34 @@ class AboutPage extends StatelessWidget {
                   ),
                   FlutterSocialButton(
                     onTap: () async {
-                      var whatsappUrl = "whatsapp://send?phone=+917406677096";
-                      try {
-                        launch(whatsappUrl);
-                      } catch (e) {
-                        //To handle error and display error message
-                        print(e.toString());
-                      }
+                      final Uri _emailLaunchUri = Uri(
+                        scheme: 'mailto',
+                        path: "iamsajid.aa@gmail.com",
+                        queryParameters: {
+                          'subject': "App Development enquiry from CoorgApp",
+                          'body':
+                              "...type your message here...\n\nName: \nPhone: \nPlace: "
+                        },
+                      );
+// To launch the link
+                      launch(_emailLaunchUri.toString());
                     },
                     mini: true,
                     buttonType: ButtonType.google,
                   ),
                   FlutterSocialButton(
                     onTap: () async {
-                      var whatsappUrl = "whatsapp://send?phone=+917406677096";
-                      try {
-                        launch(whatsappUrl);
-                      } catch (e) {
-                        //To handle error and display error message
-                        print(e.toString());
-                      }
+                      final Uri _emailLaunchUri = Uri(
+                        scheme: 'mailto',
+                        path: "iamsajid.aa@gmail.com",
+                        queryParameters: {
+                          'subject': "App Development enquiry from CoorgApp",
+                          'body':
+                              "...type your message here...\n\nName: \nPhone: \nPlace: "
+                        },
+                      );
+// To launch the link
+                      launch(_emailLaunchUri.toString());
                     },
                     mini: true,
                   ),
@@ -157,6 +173,9 @@ class AboutPage extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 12,
             ),
           ],
         ),

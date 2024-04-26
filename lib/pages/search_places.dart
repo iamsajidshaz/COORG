@@ -1,19 +1,18 @@
-import 'package:coorg/components/destination_list.dart';
-import 'package:coorg/components/place_list.dart';
-import 'package:coorg/pages/search_places.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:coorg/components/places.dart';
+import 'package:coorg/pages/explore_place_detailed.dart';
 import 'package:flutter/material.dart';
 
-import '../settings_page.dart';
-
-class Home extends StatefulWidget {
-  const Home({super.key});
+class SearchPlaces extends StatefulWidget {
+  const SearchPlaces({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<SearchPlaces> createState() => _SearchPlacesState();
 }
 
-class _HomeState extends State<Home> {
+class _SearchPlacesState extends State<SearchPlaces> {
+  final controller = TextEditingController();
+  List<Places> places = allPlaces;
+
   final List _lats = [
     '12.458413130905688',
     '12.421236986559824',
@@ -50,43 +49,6 @@ class _HomeState extends State<Home> {
     '75.74277136628',
     '75.8787042546437',
   ];
-  final List _placesList = [
-    'Abbey Falls',
-    'Madikeri Fort',
-    'Mallalli Falls',
-    'Golden Temple',
-    'Harangi Dam',
-    'Mandalpatti Peak',
-    'backwater',
-    'irpu',
-    'kotebetta',
-    'rajas_tomb',
-    'talakaveri',
-    'KoteyAbbey Falls',
-    'Dubare Camp',
-    'Kaveri Nisargadhama',
-    'Omkareshwara Temple',
-    'ChikliHole Dam',
-  ];
-  final List _places_images = [
-    "assets/images/abbey_falls.jpg",
-    "assets/images/madikeri_fort.jpg",
-    "assets/images/mallalli_falls.jpg",
-    "assets/images/golden_temple.jpg",
-    "assets/images/harangi_dam.jpg",
-    "assets/images/mandalpatti.jpg",
-    "assets/images/backwater.jpg",
-    "assets/images/irpu.jpg",
-    "assets/images/kotebetta.jpg",
-    "assets/images/rajas_tomb.jpg",
-    "assets/images/talakaveri.jpg",
-    "assets/images/kotte_abbi_falls.jpg",
-    "assets/images/dubare.jpg",
-    "assets/images/nisargadhama.jpg",
-    "assets/images/omkareshwara_temple.jpg",
-    "assets/images/chiklihole.jpg",
-  ];
-
   final List _desc = [
     // Abbey Falls
     "Abbey Falls (also referred to as Abbi Falls) is a popular waterfall in Kodagu district. River Kaveri drops for about 70 ft over wide rocks creating a spectacular view. While the height is not much compared to other waterfalls in Karnataka, Abbey Falls’ has wider fall area that creates spectacular views and its proximity to Madikeri city makes Abbey Falls desirable and easy to access.\n\nEntry to Abbey Falls is open from 9 AM to 5 PM. Access to Abbey Falls is via private coffee plantations. A hanging bridge is available to enjoy the view of Abbey waterfalls from an elevation. Bathing or swimming in Abbey Falls is not allowed. Limited parking is available\n\nAbbey Falls is just 6 kms from Madikeri town. Madikeri is 250 kms from Bengaluru city and 140 kms from Mangaluru. Kannur International Airport in Kerala is the closest to Madikeri (90 kms from Madikeri). Madikeri has excellent bus connectivity from Bengaluru, Mysuru and Mangaluru. Once in Madikeri, taxis can be hired to explore various attractions in Madikeri and Kodagu.",
@@ -124,220 +86,112 @@ class _HomeState extends State<Home> {
     //
   ];
 
-  final List _destinationList = [
-    'Madikeri',
-    'Virajpete',
-    'Kushalnagara',
-    'Somwarpete',
-  ];
-  final List _destListPictures = [
-    "assets/images/madikeri_town.jpg",
-    "assets/images/virajpete_town.jpg",
-    "assets/images/kushalnagar_town.jpg",
-    "assets/images/somwarpete_town.jpg",
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 25.0, top: 25, right: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // icon
-              const Icon(CupertinoIcons.home),
-
-              // text
-              const Text(
-                "C O O R G   E X P L O R E R",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-
-              // icon
-              IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SettingsPage()));
-                },
-                icon: const Icon(
-                  CupertinoIcons.heart_fill,
-                  color: Colors.red,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("EXPLORE COORG"),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.background,
+      ),
+      body: Column(
+        children: [
+          // search bar
+          Container(
+            margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+            child: TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search),
+                hintText: 'Where do you want to go...',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.black),
                 ),
               ),
-            ],
+              onChanged: searchPlace,
+            ),
           ),
-        ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: places.length,
+              itemBuilder: (context, index) {
+                final place = places[index];
+                //list
+                return GestureDetector(
+                  onTap: () {
+                    // ---------------------------------------
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailedPlace(
+                                place: place.title,
+                                dest: place.subTitle,
+                                imageUrl: place.urlImage,
+                                imageOne: place.urlImage,
+                                imageTwo: place.urlImage,
+                                imageThree: place.urlImage,
+                                facOne: "Parking",
+                                facTwo: "Food",
+                                facThree: "Guides",
+                                desc: _desc[index],
+                                lat: _lats[index],
+                                lang: _langs[index],
+                              )),
+                    );
 
-        const SizedBox(
-          height: 20,
-        ),
-        Container(
-          margin: const EdgeInsets.only(left: 20),
-          child: const Text(
-            'Where do you want',
-            style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold),
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(left: 20),
-          child: const Text(
-            'to go?',
-            style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        // search bar
-        Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: GestureDetector(
-            //on tap
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SearchPlaces()),
-              );
-            },
-            //
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: const Color(0xfff4f6fd),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              margin: const EdgeInsets.only(left: 12, right: 12, top: 10),
-              child: Row(
-                //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(
-                    Icons.search,
-                    color: Color(0xffBFC205),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    'Search',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Theme.of(context).colorScheme.primary,
+                    // ----------------------------------------
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      height: 160,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset(
+                              place.urlImage,
+                              fit: BoxFit.cover,
+                              width: 150,
+                              height: 150,
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(place.title),
+                              Text(place.subTitle),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-
-        // header
-        const Padding(
-          padding: EdgeInsets.only(left: 25.0, top: 25, right: 25),
-          child: Text(
-            'Explore Places',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-
-        // places
-        Container(
-          margin: const EdgeInsets.only(left: 25, top: 12),
-          height: 280,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: _placesList.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 12),
-                  child: PlacesList(
-                    text: _placesList[index],
-                    image: _places_images[index],
-                    desc: _desc[index],
-                    lat: _lats[index],
-                    lang: _langs[index],
-                  ),
                 );
               },
             ),
           ),
-        ),
-
-        // header
-        const Padding(
-          padding: EdgeInsets.only(left: 25.0, top: 25, right: 25),
-          child: Text(
-            'Popular Destinations in Coorg',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-
-        // destination places
-
-        Container(
-          margin: const EdgeInsets.only(left: 25, top: 12),
-          height: 250,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: ListView.builder(
-              itemCount: _destinationList.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 12),
-                  child: DestinationsList(
-                    text: _destinationList[index],
-                    image: _destListPictures[index],
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
-        // header
-        const Padding(
-          padding: EdgeInsets.only(left: 25.0, top: 25, right: 25),
-          child: Text(
-            'Picture of the day',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-
-        // banner images
-        Padding(
-          padding: const EdgeInsets.only(top: 25.0, left: 25, right: 12),
-          child: Container(
-            height: 250,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/raja_seat.jpg"),
-                fit: BoxFit.cover,
-              ),
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-        ),
-
-        // powered by
-        Padding(
-          padding: const EdgeInsets.all(25),
-          child: Center(
-            child: Text(
-              'Made with ❤ by ShazTech',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
+  }
+
+  void searchPlace(String query) {
+    final suggestions = allPlaces.where((place) {
+      //
+      final placeTitle = place.title.toLowerCase();
+      final input = query.toString();
+      return placeTitle.contains(input);
+    }).toList();
+    setState(() {
+      places = suggestions;
+    });
   }
 }

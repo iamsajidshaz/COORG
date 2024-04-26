@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Container(
               padding: const EdgeInsets.all(25),
               margin: const EdgeInsets.only(bottom: 24, left: 12, right: 12),
-              height: MediaQuery.of(context).size.height / 4 + (30),
+              height: MediaQuery.of(context).size.height * 0.25,
               decoration: BoxDecoration(
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(12),
@@ -96,6 +96,18 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                         ),
                 ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(25),
+              child: Center(
+                child: Text(
+                  'Made with ❤ by ShazTech',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           ],
