@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:readmore/readmore.dart';
@@ -36,8 +37,8 @@ class DetailedPlace extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: double.maxFinite.w,
-        height: double.maxFinite.h,
+        width: MediaQuery.of(context).size.width.w,
+        height: MediaQuery.of(context).size.height.h,
         child: Stack(
           children: [
             //
@@ -47,8 +48,8 @@ class DetailedPlace extends StatelessWidget {
               child: Hero(
                 tag: imageUrl,
                 child: Container(
-                  width: double.maxFinite,
-                  height: 220.h,
+                  width: 360.w,
+                  height: MediaQuery.of(context).size.height / 2.h,
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.background,
                     image: DecorationImage(
@@ -61,9 +62,9 @@ class DetailedPlace extends StatelessWidget {
             ),
             //
             Positioned(
-              left: 5,
-              right: 5,
-              top: 60,
+              left: 2,
+              right: 2,
+              top: 50,
               child: Container(
                 width: MediaQuery.of(context).size.width.w,
                 child: Row(
@@ -265,11 +266,11 @@ class DetailedPlace extends StatelessWidget {
                       Row(
                         children: [
                           SizedBox(
-                            width: 360.w * 0.90,
+                            width: MediaQuery.of(context).size.width - 40.w,
                             child: ReadMoreText(
                               desc,
                               style: TextStyle(fontSize: 12.sp),
-                              trimLines: 2,
+                              trimLines: 3,
                               colorClickableText: Colors.pink,
                               trimMode: TrimMode.Line,
                               trimCollapsedText: 'show more...',

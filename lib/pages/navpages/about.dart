@@ -92,12 +92,13 @@ class AboutPage extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: Center(
                 child: Text(
-                  "Need an App like this? Contact Us",
+                  "For feedback or business queries,\nContact Us on",
+                  textAlign: TextAlign.center,
                   //  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16.sp,
-                      color: Colors.blueAccent),
+                      color: Colors.black87),
                 ),
               ),
             ),

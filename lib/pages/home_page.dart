@@ -4,8 +4,6 @@ import 'package:coorg/pages/navpages/gallery.dart';
 import 'package:coorg/pages/navpages/home.dart';
 import 'package:flutter/material.dart';
 
-import '../components/my_drawer.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -25,9 +23,6 @@ class _HomePageState extends State<HomePage> {
   // pages to display
   final List<Widget> _pages = [
     Home(),
-    // Container(
-    //   color: Colors.blue,
-    // ),
     GalleryPage(),
     // about us page
     AboutPage(),
@@ -37,36 +32,41 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.amber,
-      bottomNavigationBar: MyBottomNavBar(
-        onTabChange: (index) => navigateBottomBar(index),
-      ),
-      // appBar: AppBar(
-      //   title: Padding(
-      //     padding: const EdgeInsets.only(left: 12.0),
-      //     child: const Text(
-      //       "C O O R G   E X P L O R E R",
-      //       style: TextStyle(fontWeight: FontWeight.bold),
-      //     ),
-      //   ),
-      //   centerTitle: true,
-      //   // leading: Icon(CupertinoIcons.home),
-      //   backgroundColor: Theme.of(context).colorScheme.background,
-      //   actions: [
-      //     Padding(
-      //       padding: const EdgeInsets.only(right: 12.0),
-      //       child: IconButton(
-      //         onPressed: () {
-      //           Navigator.push(
-      //               context,
-      //               MaterialPageRoute(
-      //                   builder: (context) => const SettingsPage()));
-      //         },
-      //         icon: Icon(CupertinoIcons.suit_heart_fill),
-      //       ),
-      //     )
-      //   ],
+      // bottomNavigationBar:
+      // MyBottomNavBar(
+      //   onTabChange: (index) => navigateBottomBar(index),
       // ),
-      drawer: MyDrawer(),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey,
+          elevation: 0,
+          selectedFontSize: 14,
+          unselectedFontSize: 14,
+          currentIndex: _selectedIndex,
+          onTap: (index) {
+            // Respond to item press.
+            navigateBottomBar(index);
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              label: 'HOME',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.photo_album_rounded),
+              label: 'GALLERY',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.info),
+              label: 'ABOUT',
+            ),
+          ],
+        ),
+      ),
       body: _pages[_selectedIndex],
     );
   }

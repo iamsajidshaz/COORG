@@ -15,7 +15,8 @@ class _SearchPlacesState extends State<SearchPlaces> {
   List<Places> places = allPlaces;
 
   final List _lats = [
-    '12.458413130905688',
+    '12.4147664424022'
+        '12.458413130905688',
     '12.421236986559824',
     '12.680904666142025',
     '12.430267934693957',
@@ -33,6 +34,7 @@ class _SearchPlacesState extends State<SearchPlaces> {
     '12.396507749941751',
   ];
   final List _langs = [
+    '75.73714428348143',
     '75.71952492319419',
     '75.73871630970048',
     '75.72365626552671',
@@ -51,6 +53,8 @@ class _SearchPlacesState extends State<SearchPlaces> {
     '75.8787042546437',
   ];
   final List _desc = [
+    // raja seat
+    "One of the popular tourist spots, Raja seat literally means “Seat of the Kings”. Located in the town of Madikeri, it is a beautiful place presenting a refreshing setting and soothing environment.\n\nThe place is called as Raja’s Seat because it was the place where Coorg’s kings used to visit and enjoy the scenic beauty around. The sunset and sunrise make for a mesmerising view which is worth captivating in your cameras.\n\nIt is the perfect setting to relax and admire the breathtaking view of the surrounding areas. Lush greenery with a calm environment and golden streams of sunlight makes for a picture perfect setting.",
     // Abbey Falls
     "Abbey Falls (also referred to as Abbi Falls) is a popular waterfall in Kodagu district. River Kaveri drops for about 70 ft over wide rocks creating a spectacular view. While the height is not much compared to other waterfalls in Karnataka, Abbey Falls’ has wider fall area that creates spectacular views and its proximity to Madikeri city makes Abbey Falls desirable and easy to access.\n\nEntry to Abbey Falls is open from 9 AM to 5 PM. Access to Abbey Falls is via private coffee plantations. A hanging bridge is available to enjoy the view of Abbey waterfalls from an elevation. Bathing or swimming in Abbey Falls is not allowed. Limited parking is available\n\nAbbey Falls is just 6 kms from Madikeri town. Madikeri is 250 kms from Bengaluru city and 140 kms from Mangaluru. Kannur International Airport in Kerala is the closest to Madikeri (90 kms from Madikeri). Madikeri has excellent bus connectivity from Bengaluru, Mysuru and Mangaluru. Once in Madikeri, taxis can be hired to explore various attractions in Madikeri and Kodagu.",
     //madikeri_fort

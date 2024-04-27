@@ -1,5 +1,6 @@
 import 'package:coorg/pages/explore_place_detailed.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PlacesList extends StatelessWidget {
   final String text;
@@ -44,8 +45,8 @@ class PlacesList extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              width: 200,
-              height: 230,
+              width: 200.w,
+              height: 200.h,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(image),
@@ -60,8 +61,8 @@ class PlacesList extends StatelessWidget {
             Container(
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(left: 5),
-              width: 200,
-              height: 40,
+              width: 200.w,
+              height: 40.h,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(

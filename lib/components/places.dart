@@ -12,6 +12,11 @@ class Places {
 
 const allPlaces = [
   Places(
+    title: 'Raja Seat',
+    subTitle: 'Madikeri',
+    urlImage: "assets/images/raja_seat.jpg",
+  ),
+  Places(
     title: 'Abbey Falls',
     subTitle: 'Madikeri',
     urlImage: "assets/images/abbey_falls.jpg",
