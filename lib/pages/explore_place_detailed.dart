@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:readmore/readmore.dart';
 
+import 'view_gallery_image.dart';
+
 class DetailedPlace extends StatelessWidget {
   final String place;
   final String dest;
@@ -47,14 +49,26 @@ class DetailedPlace extends StatelessWidget {
               right: 0,
               child: Hero(
                 tag: imageUrl,
-                child: Container(
-                  width: 360.w,
-                  height: MediaQuery.of(context).size.height / 2.h,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
-                    image: DecorationImage(
-                      image: AssetImage(imageUrl),
-                      fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ViewImage(
+                                imageUrl: imageUrl,
+                                imageName: place,
+                              )),
+                    );
+                  },
+                  child: Container(
+                    width: 360.w,
+                    height: MediaQuery.of(context).size.height / 2.h,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.background,
+                      image: DecorationImage(
+                        image: AssetImage(imageUrl),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -315,12 +329,14 @@ class DetailedPlace extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) =>
-                              //           ViewImage(imageUrl: imageOne)),
-                              //   );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ViewImage(
+                                          imageUrl: imageOne,
+                                          imageName: place,
+                                        )),
+                              );
                             },
                             child: Container(
                               height: 100.w,
@@ -337,12 +353,14 @@ class DetailedPlace extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) =>
-                              //           ViewImage(imageUrl: imageTwo)),
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ViewImage(
+                                          imageUrl: imageTwo,
+                                          imageName: place,
+                                        )),
+                              );
                             },
                             child: Container(
                               height: 100.w,
@@ -361,12 +379,14 @@ class DetailedPlace extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) =>
-                              //           ViewImage(imageUrl: imageThree)),
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ViewImage(
+                                          imageUrl: imageThree,
+                                          imageName: place,
+                                        )),
+                              );
                             },
                             child: Container(
                               height: 100.w,

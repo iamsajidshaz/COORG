@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:coorg/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class MainSplashScreen extends StatefulWidget {
   const MainSplashScreen({super.key});
@@ -12,9 +14,16 @@ class MainSplashScreen extends StatefulWidget {
 }
 
 class _MainSplashScreenState extends State<MainSplashScreen> {
+  InterstitialAd? _interstitialAd;
+
+  final String _adUnitId = Platform.isAndroid
+      ? 'ca-app-pub-3940256099942544/1033173712'
+      : 'ca-app-pub-3940256099942544/4411468910';
+
   @override
   void initState() {
     super.initState();
+    _loadAd();
     startTimer();
   }
 
@@ -24,8 +33,9 @@ class _MainSplashScreenState extends State<MainSplashScreen> {
   }
 
   route() {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const SplashScreen()));
+    _interstitialAd?.show();
+    // Navigator.pushReplacement(
+    //     context, MaterialPageRoute(builder: (context) => const SplashScreen()));
   }
 
   @override
@@ -65,5 +75,51 @@ class _MainSplashScreenState extends State<MainSplashScreen> {
         ),
       ),
     );
+  }
+
+  /// Loads an interstitial ad.
+  void _loadAd() {
+    InterstitialAd.load(
+        adUnitId: _adUnitId,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          // Called when an ad is successfully received.
+          onAdLoaded: (InterstitialAd ad) {
+            ad.fullScreenContentCallback = FullScreenContentCallback(
+                // Called when the ad showed the full screen content.
+                onAdShowedFullScreenContent: (ad) {},
+                // Called when an impression occurs on the ad.
+                onAdImpression: (ad) {},
+                // Called when the ad failed to show full screen content.
+                onAdFailedToShowFullScreenContent: (ad, err) {
+                  ad.dispose();
+                },
+                // Called when the ad dismissed full screen content.
+                onAdDismissedFullScreenContent: (ad) {
+                  ad.dispose();
+                  // print("dismissed");
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SplashScreen()));
+                },
+                // Called when a click is recorded for an ad.
+                onAdClicked: (ad) {});
+
+            // Keep a reference to the ad so you can show it later.
+            _interstitialAd = ad;
+          },
+          // Called when an ad request failed.
+          onAdFailedToLoad: (LoadAdError error) {
+            // ignore: avoid_print
+            print('InterstitialAd failed to load: $error');
+          },
+        ));
+  }
+
+  @override
+  void dispose() {
+    _interstitialAd?.dispose();
+    super.dispose();
   }
 }

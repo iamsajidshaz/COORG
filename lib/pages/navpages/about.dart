@@ -121,19 +121,19 @@ class AboutPage extends StatelessWidget {
                     mini: true,
                     buttonType: ButtonType.whatsapp,
                   ),
-                  FlutterSocialButton(
-                    onTap: () async {
-                      var whatsappUrl = "https://www.facebook.com/sajidshaz611";
-                      try {
-                        launch(whatsappUrl);
-                      } catch (e) {
-                        //To handle error and display error message
-                        print(e.toString());
-                      }
-                    },
-                    mini: true,
-                    buttonType: ButtonType.facebook,
-                  ),
+                  // FlutterSocialButton(
+                  //   onTap: () async {
+                  //     var whatsappUrl = "https://www.facebook.com/sajidshaz611";
+                  //     try {
+                  //       launch(whatsappUrl);
+                  //     } catch (e) {
+                  //       //To handle error and display error message
+                  //       print(e.toString());
+                  //     }
+                  //   },
+                  //   mini: true,
+                  //   buttonType: ButtonType.facebook,
+                  // ),
                   FlutterSocialButton(
                     onTap: () async {
                       final Uri _emailLaunchUri = Uri(
@@ -151,22 +151,22 @@ class AboutPage extends StatelessWidget {
                     mini: true,
                     buttonType: ButtonType.google,
                   ),
-                  FlutterSocialButton(
-                    onTap: () async {
-                      final Uri _emailLaunchUri = Uri(
-                        scheme: 'mailto',
-                        path: "iamsajid.aa@gmail.com",
-                        queryParameters: {
-                          'subject': "App Development enquiry from CoorgApp",
-                          'body':
-                              "...type your message here...\n\nName: \nPhone: \nPlace: "
-                        },
-                      );
-// To launch the link
-                      launch(_emailLaunchUri.toString());
-                    },
-                    mini: true,
-                  ),
+//                   FlutterSocialButton(
+//                     onTap: () async {
+//                       final Uri _emailLaunchUri = Uri(
+//                         scheme: 'mailto',
+//                         path: "iamsajid.aa@gmail.com",
+//                         queryParameters: {
+//                           'subject': "App Development enquiry from CoorgApp",
+//                           'body':
+//                               "...type your message here...\n\nName: \nPhone: \nPlace: "
+//                         },
+//                       );
+// // To launch the link
+//                       launch(_emailLaunchUri.toString());
+//                     },
+//                     mini: true,
+//                   ),
                 ],
               ),
             ),

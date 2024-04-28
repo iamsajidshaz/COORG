@@ -8,6 +8,7 @@ class GalleryPage extends StatelessWidget {
   GalleryPage({super.key});
 
   final List _gallery_images = [
+    "assets/images/raja_seat.jpg",
     "assets/images/abbey_falls.jpg",
     "assets/images/madikeri_fort.jpg",
     "assets/images/mallalli_falls.jpg",
@@ -24,6 +25,25 @@ class GalleryPage extends StatelessWidget {
     "assets/images/nisargadhama.jpg",
     "assets/images/omkareshwara_temple.jpg",
     "assets/images/chiklihole.jpg",
+  ];
+  final List _placesList = [
+    'Raja Seat',
+    'Abbey Falls',
+    'Madikeri Fort',
+    'Mallalli Falls',
+    'Golden Temple',
+    'Harangi Dam',
+    'Mandalpatti Peak',
+    'backwater',
+    'irpu',
+    'kotebetta',
+    'rajas_tomb',
+    'talakaveri',
+    'KoteyAbbey Falls',
+    'Dubare Camp',
+    'Kaveri Nisargadhama',
+    'Omkareshwara Temple',
+    'ChikliHole Dam',
   ];
 
   @override
@@ -52,6 +72,7 @@ class GalleryPage extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return GalleryItem(
             image: _gallery_images[index],
+            imagePlace: _placesList[index],
           );
         },
       ),
