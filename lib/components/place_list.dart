@@ -52,7 +52,7 @@ class PlacesList extends StatelessWidget {
                   image: AssetImage(image),
                   fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(12),
                   topRight: Radius.circular(12),
                 ),
@@ -60,10 +60,10 @@ class PlacesList extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 5),
+              padding: const EdgeInsets.only(left: 5),
               width: 200.w,
               height: 40.h,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(12),
@@ -73,7 +73,7 @@ class PlacesList extends StatelessWidget {
               child: Text(
                 text,
                 textAlign: TextAlign.start,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black87, fontWeight: FontWeight.bold),
               ),
             ),

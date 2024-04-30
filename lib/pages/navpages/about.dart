@@ -110,12 +110,13 @@ class AboutPage extends StatelessWidget {
                 children: [
                   FlutterSocialButton(
                     onTap: () async {
-                      var whatsappUrl = "whatsapp://send?phone=+917406677096";
+                      var whatsappUrl =
+                          Uri.parse("whatsapp://send?phone=+917406677096");
                       try {
-                        launch(whatsappUrl);
+                        launchUrl(whatsappUrl);
                       } catch (e) {
                         //To handle error and display error message
-                        print(e.toString());
+                        // print(e.toString());
                       }
                     },
                     mini: true,
@@ -136,7 +137,7 @@ class AboutPage extends StatelessWidget {
                   // ),
                   FlutterSocialButton(
                     onTap: () async {
-                      final Uri _emailLaunchUri = Uri(
+                      final Uri emailLaunchUri = Uri(
                         scheme: 'mailto',
                         path: "iamsajid.aa@gmail.com",
                         queryParameters: {
@@ -146,7 +147,7 @@ class AboutPage extends StatelessWidget {
                         },
                       );
 // To launch the link
-                      launch(_emailLaunchUri.toString());
+                      launchUrl(emailLaunchUri);
                     },
                     mini: true,
                     buttonType: ButtonType.google,

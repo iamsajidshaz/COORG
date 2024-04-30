@@ -7,7 +7,7 @@ import '../../components/single_gallery_item.dart';
 class GalleryPage extends StatelessWidget {
   GalleryPage({super.key});
 
-  final List _gallery_images = [
+  final List _galleryImages = [
     "assets/images/raja_seat.jpg",
     "assets/images/abbey_falls.jpg",
     "assets/images/madikeri_fort.jpg",
@@ -68,10 +68,10 @@ class GalleryPage extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
-        itemCount: _gallery_images.length,
+        itemCount: _galleryImages.length,
         itemBuilder: (BuildContext context, int index) {
           return GalleryItem(
-            image: _gallery_images[index],
+            image: _galleryImages[index],
             imagePlace: _placesList[index],
           );
         },

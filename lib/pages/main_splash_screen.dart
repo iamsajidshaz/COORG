@@ -58,7 +58,7 @@ class _MainSplashScreenState extends State<MainSplashScreen> {
                   fontSize: 40.sp,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(

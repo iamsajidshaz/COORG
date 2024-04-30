@@ -1,7 +1,7 @@
-import 'package:coorg/components/bottom_nav_bar.dart';
 import 'package:coorg/pages/navpages/about.dart';
 import 'package:coorg/pages/navpages/gallery.dart';
 import 'package:coorg/pages/navpages/home.dart';
+import 'package:coorg/pages/navpages/home_stays_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,20 +22,15 @@ class _HomePageState extends State<HomePage> {
 
   // pages to display
   final List<Widget> _pages = [
-    Home(),
+    const Home(),
     GalleryPage(),
-    // about us page
-    AboutPage(),
+    const HomeStaysPage(),
+    const AboutPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.amber,
-      // bottomNavigationBar:
-      // MyBottomNavBar(
-      //   onTabChange: (index) => navigateBottomBar(index),
-      // ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: BottomNavigationBar(
@@ -59,6 +54,10 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.photo_album_rounded),
               label: 'GALLERY',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.maps_home_work_sharp),
+              label: 'Stays',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.info),

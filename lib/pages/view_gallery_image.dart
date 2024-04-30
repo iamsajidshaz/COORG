@@ -17,7 +17,7 @@ class ViewImage extends StatelessWidget {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
           imageName,
           style: TextStyle(
@@ -27,10 +27,9 @@ class ViewImage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Container(
-          child: PhotoView(
+      body: PhotoView(
         imageProvider: AssetImage(imageUrl),
-      )),
+      ),
     );
   }
 }

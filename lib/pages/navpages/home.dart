@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
     'Omkareshwara Temple',
     'ChikliHole Dam',
   ];
-  final List _places_images = [
+  final List _placesImages = [
     "assets/images/raja_seat.jpg",
     "assets/images/abbey_falls.jpg",
     "assets/images/madikeri_fort.jpg",
@@ -264,7 +264,7 @@ class _HomeState extends State<Home> {
                 children: [
                   Icon(
                     Icons.search,
-                    color: Color(0xffBFC205),
+                    color: const Color(0xffBFC205),
                     size: 24.sp,
                   ),
                   SizedBox(
@@ -309,7 +309,7 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.only(top: 8.0, right: 12),
                   child: PlacesList(
                     text: _placesList[index],
-                    image: _places_images[index],
+                    image: _placesImages[index],
                     desc: _desc[index],
                     lat: _lats[index],
                     lang: _langs[index],
@@ -372,7 +372,7 @@ class _HomeState extends State<Home> {
           child: Container(
             height: 200.h,
             decoration: BoxDecoration(
-              image: DecorationImage(
+              image: const DecorationImage(
                 image: AssetImage("assets/images/raja_seat.jpg"),
                 fit: BoxFit.cover,
               ),

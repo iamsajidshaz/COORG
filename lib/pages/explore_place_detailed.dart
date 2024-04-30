@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:readmore/readmore.dart';
@@ -20,7 +19,7 @@ class DetailedPlace extends StatelessWidget {
       lat,
       lang;
   const DetailedPlace(
-      {Key? key,
+      {super.key,
       required this.place,
       required this.dest,
       required this.imageUrl,
@@ -32,13 +31,12 @@ class DetailedPlace extends StatelessWidget {
       required this.facThree,
       required this.desc,
       required this.lat,
-      required this.lang})
-      : super(key: key);
+      required this.lang});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width.w,
         height: MediaQuery.of(context).size.height.h,
         child: Stack(
@@ -79,7 +77,7 @@ class DetailedPlace extends StatelessWidget {
               left: 2,
               right: 2,
               top: 50,
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width.w,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
