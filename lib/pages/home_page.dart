@@ -1,7 +1,8 @@
 import 'package:coorg/pages/navpages/about.dart';
 import 'package:coorg/pages/navpages/gallery.dart';
 import 'package:coorg/pages/navpages/home.dart';
-import 'package:coorg/pages/navpages/home_stays_page.dart';
+import 'package:coorg/pages/navpages/explore_coorg.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,8 +24,8 @@ class _HomePageState extends State<HomePage> {
   // pages to display
   final List<Widget> _pages = [
     const Home(),
+    ExploreCoorgPage(),
     GalleryPage(),
-    const HomeStaysPage(),
     const AboutPage(),
   ];
 
@@ -48,16 +49,16 @@ class _HomePageState extends State<HomePage> {
           },
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
+              icon: Icon(CupertinoIcons.home),
               label: 'HOME',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.location_circle),
+              label: 'Explore',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.photo_album_rounded),
               label: 'GALLERY',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.maps_home_work_sharp),
-              label: 'Stays',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.info),

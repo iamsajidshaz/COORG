@@ -211,8 +211,8 @@ class _HomeState extends State<Home> {
                           builder: (context) => const SettingsPage()));
                 },
                 icon: Icon(
-                  CupertinoIcons.heart_fill,
-                  color: Colors.red,
+                  CupertinoIcons.settings,
+                  color: Colors.black87,
                   size: 24.sp,
                 ),
               ),
