@@ -4,6 +4,7 @@ import 'package:coorg/pages/search_places.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../settings_page.dart';
 
@@ -15,6 +16,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  BannerAd? _bannerAd;
+
+  // test banned ad id
+  final String _adUnitId = 'ca-app-pub-3940256099942544/6300978111';
+
+  // my banner ad id
+  // final String _adUnitId = 'ca-app-pub-5026929321885207/6789224225';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAd();
+  }
+
   final List _lats = [
     '12.41480835424861',
     '12.458413130905688',
@@ -319,6 +334,14 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
+        // banner ad
+
+        if (_bannerAd != null)
+          SizedBox(
+            width: _bannerAd!.size.width.toDouble().w,
+            height: _bannerAd!.size.height.toDouble().h,
+            child: AdWidget(ad: _bannerAd!),
+          ),
 
         // header
         Padding(
@@ -354,6 +377,7 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
+
         // header
         Padding(
           padding: const EdgeInsets.only(left: 25.0, top: 25, right: 25),
@@ -394,5 +418,40 @@ class _HomeState extends State<Home> {
         ),
       ],
     );
+  }
+
+  /// Loads and shows a banner ad.
+  ///
+  /// Dimensions of the ad are determined by the AdSize class.
+  void _loadAd() async {
+    BannerAd(
+      adUnitId: _adUnitId,
+      request: const AdRequest(),
+      size: AdSize.fullBanner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          setState(() {
+            _bannerAd = ad as BannerAd;
+          });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          ad.dispose();
+        },
+        // Called when an ad opens an overlay that covers the screen.
+        onAdOpened: (Ad ad) {},
+        // Called when an ad removes an overlay that covers the screen.
+        onAdClosed: (Ad ad) {},
+        // Called when an impression occurs on the ad.
+        onAdImpression: (Ad ad) {},
+      ),
+    ).load();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
   }
 }

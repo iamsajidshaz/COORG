@@ -15,8 +15,10 @@ class MainSplashScreen extends StatefulWidget {
 class _MainSplashScreenState extends State<MainSplashScreen> {
   InterstitialAd? _interstitialAd;
 
-  // test id final String _adUnitId = 'ca-app-pub-3940256099942544/1033173712';
-  final String _adUnitId = 'ca-app-pub-5026929321885207/9831316383';
+  // test  interstitial ad id
+  final String _adUnitId = 'ca-app-pub-3940256099942544/1033173712';
+  // my intertitial  id
+  // final String _adUnitId = 'ca-app-pub-5026929321885207/9831316383';
 
   @override
   void initState() {

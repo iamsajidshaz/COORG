@@ -1,4 +1,5 @@
 import 'package:coorg/pages/navpages/about.dart';
+import 'package:coorg/pages/navpages/coorg_taxi.dart';
 import 'package:coorg/pages/navpages/gallery.dart';
 import 'package:coorg/pages/navpages/home.dart';
 import 'package:coorg/pages/navpages/explore_coorg.dart';
@@ -25,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     const Home(),
     ExploreCoorgPage(),
+    const CoorgTaxi(),
     GalleryPage(),
     const AboutPage(),
   ];
@@ -55,6 +57,10 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.location_circle),
               label: 'Explore',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.local_taxi),
+              label: 'TAXI',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.photo_album_rounded),
