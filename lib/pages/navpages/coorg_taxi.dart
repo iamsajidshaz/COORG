@@ -1,10 +1,16 @@
+import 'package:coorg/pages/taxipage_detailed.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 
 class CoorgTaxi extends StatefulWidget {
-  const CoorgTaxi({super.key});
+//  final TabController tabController;
+  const CoorgTaxi({
+    super.key,
+    // required this.tabController,
+  });
 
   @override
   State<CoorgTaxi> createState() => _CoorgTaxiState();
@@ -55,7 +61,7 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
 
               // text
               Text(
-                "C O O R G  T A X I",
+                "C O O R G    T A X I",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
               ),
 
@@ -83,14 +89,28 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
           height: 10.h,
         ),
         //
-        Container(
-          margin: const EdgeInsets.all(10),
-          child: Text(
-            textAlign: TextAlign.center,
-            'Travel in Class, Experience the Difference',
-            style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 25),
+              child: Text(
+                textAlign: TextAlign.start,
+                'Rent a Car Anytime',
+                style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 25),
+              child: Text(
+                textAlign: TextAlign.start,
+                'Anywhere',
+                style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
         ),
+
 //gap
         SizedBox(
           height: 15.h,
@@ -115,10 +135,20 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
           ),
         ),
 
-        // List taxis
+// tab bars
+
+        // Container(
+        //   child: TabBar(
+        //     controller: TabController,
+        //   ),
+        // ),
+
+// end of tab bar
+
+        //  List taxis
         Container(
           margin: const EdgeInsets.only(left: 25, top: 12),
-          height: 200.h,
+          height: 180.h,
           child: Padding(
             padding: const EdgeInsets.only(right: 12),
             child: ListView.builder(
@@ -126,69 +156,123 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
               itemCount: 5,
               itemBuilder: (context, index) {
                 // final homestay = homestays[index];
-                return Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 250.w,
-                        height: 150.h,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          ),
-                          color: Colors.grey.shade200,
-                          image: const DecorationImage(
-                            image: AssetImage("assets/images/inovaone.jpeg"),
-                            fit: BoxFit.cover,
-                          ),
+                return GestureDetector(
+                  //
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TaxiPageDetailed(
+                          image: "assets/images/inovaone.jpeg",
+                          owner: "Saleem Taxi Suntikoppa",
+                          car: "Toyota Innova",
+                          ratenonac: "20",
+                          rateac: "22",
                         ),
                       ),
-                      Container(
-                        width: 250.w,
-                        height: 50.h,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
-                          borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
+                    );
+                  },
+                  //
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 250.w,
+                          height: 120.h,
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                            color: Colors.grey.shade200,
+                            image: const DecorationImage(
+                              image: AssetImage("assets/images/inovaone.jpeg"),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Saleem Taxi, Suntikoppa",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.sp,
-                                  color: Colors.black87,
+                        Container(
+                          width: 250.w,
+                          height: 50.h,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondary,
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.person_alt_circle,
+                                      size: 12.sp,
+                                    ),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    Text(
+                                      "Saleem Taxi, Suntikoppa",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14.sp,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Text(
-                                "Toyota Innova, 7 Seater",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12.sp,
-                                  color: Colors.grey[700],
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.car_fill,
+                                      size: 12.sp,
+                                    ),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    Text(
+                                      "Toyota Innova, 7 Seater",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12.sp,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Text(
-                                "₹20/KM (₹22 with A/C)",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10.sp,
-                                  color: Colors.grey[700],
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.currency_rupee,
+                                      size: 12.sp,
+                                    ),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    Text(
+                                      "₹20/KM (₹22 with A/C)",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10.sp,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
@@ -196,8 +280,11 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
           ),
         ),
 
-        const SizedBox(
-          height: 20,
+        // aniation lottie
+        SizedBox(
+          width: 360.w,
+          height: 180.h,
+          child: Lottie.asset('assets/images/taxi_anim.json'),
         ),
 
         if (_bannerAd != null)
@@ -206,24 +293,17 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
             height: _bannerAd!.size.height.toDouble().h,
             child: AdWidget(ad: _bannerAd!),
           ),
-
-        // aniation lottie
-        SizedBox(
-          width: 360.w,
-          height: 180.h,
-          child: Lottie.asset('assets/images/taxi_anim_lottie.json'),
-        ),
-
-        // powered by
-        Padding(
-          padding: const EdgeInsets.all(25),
-          child: Center(
-            child: Text(
-              'Made with ❤ by ShazTech',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.sp),
-            ),
-          ),
-        ),
+        // // powered by
+        // Padding(
+        //   padding:
+        //       const EdgeInsets.only(left: 25, right: 25, top: 10, bottom: 10),
+        //   child: Center(
+        //     child: Text(
+        //       'Made with ❤ by ShazTech',
+        //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.sp),
+        //     ),
+        //   ),
+        // ),
 
         // // 2. your custom booking
 
