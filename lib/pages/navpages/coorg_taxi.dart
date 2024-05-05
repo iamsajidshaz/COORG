@@ -20,10 +20,10 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
   BannerAd? _bannerAd;
 
   // test banned ad id
-  final String _adUnitId = 'ca-app-pub-3940256099942544/6300978111';
+  // final String _adUnitId = 'ca-app-pub-3940256099942544/6300978111';
 
   // my banner ad id
-  // final String _adUnitId = 'ca-app-pub-5026929321885207/6789224225';
+  final String _adUnitId = 'ca-app-pub-5026929321885207/6789224225';
 
   /// Declare this variable
   // late int selectedRadioTile;
@@ -126,14 +126,15 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
 
         // 1. List Taxis
 
-        // header
-        Padding(
-          padding: const EdgeInsets.only(left: 25.0, top: 5, right: 25),
-          child: Text(
-            'Our Taxi Partners',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
-          ),
-        ),
+// taxi
+        // // header
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 25.0, top: 5, right: 25),
+        //   child: Text(
+        //     'Our Taxi Partners',
+        //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
+        //   ),
+        // ),
 
 // tab bars
 
@@ -145,146 +146,165 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
 
 // end of tab bar
 
-        //  List taxis
-        Container(
-          margin: const EdgeInsets.only(left: 25, top: 12),
-          height: 180.h,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                // final homestay = homestays[index];
-                return GestureDetector(
-                  //
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TaxiPageDetailed(
-                          image: "assets/images/inovaone.jpeg",
-                          owner: "Saleem Taxi Suntikoppa",
-                          car: "Toyota Innova",
-                          ratenonac: "20",
-                          rateac: "22",
-                        ),
-                      ),
-                    );
-                  },
-                  //
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 250.w,
-                          height: 120.h,
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
-                            ),
-                            color: Colors.grey.shade200,
-                            image: const DecorationImage(
-                              image: AssetImage("assets/images/inovaone.jpeg"),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 250.w,
-                          height: 50.h,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.secondary,
-                            borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      CupertinoIcons.person_alt_circle,
-                                      size: 12.sp,
-                                    ),
-                                    SizedBox(
-                                      width: 5.w,
-                                    ),
-                                    Text(
-                                      "Saleem Taxi, Suntikoppa",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14.sp,
-                                        color: Colors.black87,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      CupertinoIcons.car_fill,
-                                      size: 12.sp,
-                                    ),
-                                    SizedBox(
-                                      width: 5.w,
-                                    ),
-                                    Text(
-                                      "Toyota Innova, 7 Seater",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12.sp,
-                                        color: Colors.black87,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      Icons.currency_rupee,
-                                      size: 12.sp,
-                                    ),
-                                    SizedBox(
-                                      width: 5.w,
-                                    ),
-                                    Text(
-                                      "₹20/KM (₹22 with A/C)",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 10.sp,
-                                        color: Colors.black87,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
+        // //  List taxis
+        // Container(
+        //   margin: const EdgeInsets.only(left: 25, top: 12),
+        //   height: 180.h,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(right: 12),
+        //     child: ListView.builder(
+        //       scrollDirection: Axis.horizontal,
+        //       itemCount: 5,
+        //       itemBuilder: (context, index) {
+        //         // final homestay = homestays[index];
+        //         return GestureDetector(
+        //           //
+        //           onTap: () {
+        //             Navigator.push(
+        //               context,
+        //               MaterialPageRoute(
+        //                 builder: (context) => const TaxiPageDetailed(
+        //                   image: "assets/images/inovaone.jpeg",
+        //                   owner: "Saleem Taxi Suntikoppa",
+        //                   car: "Toyota Innova",
+        //                   ratenonac: "20",
+        //                   rateac: "22",
+        //                 ),
+        //               ),
+        //             );
+        //           },
+        //           //
+        //           child: Padding(
+        //             padding: const EdgeInsets.only(right: 8.0),
+        //             child: Column(
+        //               children: [
+        //                 Container(
+        //                   width: 250.w,
+        //                   height: 120.h,
+        //                   decoration: BoxDecoration(
+        //                     borderRadius: const BorderRadius.only(
+        //                       topLeft: Radius.circular(10),
+        //                       topRight: Radius.circular(10),
+        //                     ),
+        //                     color: Colors.grey.shade200,
+        //                     image: const DecorationImage(
+        //                       image: AssetImage("assets/images/inovaone.jpeg"),
+        //                       fit: BoxFit.cover,
+        //                     ),
+        //                   ),
+        //                 ),
+        //                 Container(
+        //                   width: 250.w,
+        //                   height: 50.h,
+        //                   decoration: BoxDecoration(
+        //                     color: Theme.of(context).colorScheme.secondary,
+        //                     borderRadius: const BorderRadius.only(
+        //                       bottomLeft: Radius.circular(10),
+        //                       bottomRight: Radius.circular(10),
+        //                     ),
+        //                   ),
+        //                   child: Padding(
+        //                     padding: const EdgeInsets.all(8.0),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         Row(
+        //                           mainAxisAlignment: MainAxisAlignment.start,
+        //                           children: [
+        //                             Icon(
+        //                               CupertinoIcons.person_alt_circle,
+        //                               size: 12.sp,
+        //                             ),
+        //                             SizedBox(
+        //                               width: 5.w,
+        //                             ),
+        //                             Text(
+        //                               "Saleem Taxi, Suntikoppa",
+        //                               style: TextStyle(
+        //                                 fontWeight: FontWeight.bold,
+        //                                 fontSize: 14.sp,
+        //                                 color: Colors.black87,
+        //                               ),
+        //                             ),
+        //                           ],
+        //                         ),
+        //                         Row(
+        //                           mainAxisAlignment: MainAxisAlignment.start,
+        //                           children: [
+        //                             Icon(
+        //                               CupertinoIcons.car_fill,
+        //                               size: 12.sp,
+        //                             ),
+        //                             SizedBox(
+        //                               width: 5.w,
+        //                             ),
+        //                             Text(
+        //                               "Toyota Innova, 7 Seater",
+        //                               style: TextStyle(
+        //                                 fontWeight: FontWeight.bold,
+        //                                 fontSize: 12.sp,
+        //                                 color: Colors.black87,
+        //                               ),
+        //                             ),
+        //                           ],
+        //                         ),
+        //                         Row(
+        //                           mainAxisAlignment: MainAxisAlignment.start,
+        //                           children: [
+        //                             Icon(
+        //                               Icons.currency_rupee,
+        //                               size: 12.sp,
+        //                             ),
+        //                             SizedBox(
+        //                               width: 5.w,
+        //                             ),
+        //                             Text(
+        //                               "₹20/KM (₹22 with A/C)",
+        //                               style: TextStyle(
+        //                                 fontWeight: FontWeight.bold,
+        //                                 fontSize: 10.sp,
+        //                                 color: Colors.black87,
+        //                               ),
+        //                             ),
+        //                           ],
+        //                         ),
+        //                       ],
+        //                     ),
+        //                   ),
+        //                 ),
+        //               ],
+        //             ),
+        //           ),
+        //         );
+        //       },
+        //     ),
+        //   ),
+        // ),
 
         // aniation lottie
         SizedBox(
           width: 360.w,
           height: 180.h,
           child: Lottie.asset('assets/images/taxi_anim.json'),
+        ),
+
+        SizedBox(
+          height: 100.h,
+        ),
+
+        // header
+        Padding(
+          padding: const EdgeInsets.only(left: 25.0, top: 5, right: 25),
+          child: Center(
+            child: Text(
+              'COMING SOON',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
+            ),
+          ),
+        ),
+
+        SizedBox(
+          height: 50.h,
         ),
 
         if (_bannerAd != null)

@@ -19,10 +19,10 @@ class _HomeState extends State<Home> {
   BannerAd? _bannerAd;
 
   // test banned ad id
-  final String _adUnitId = 'ca-app-pub-3940256099942544/6300978111';
+  // final String _adUnitId = 'ca-app-pub-3940256099942544/6300978111';
 
   // my banner ad id
-  // final String _adUnitId = 'ca-app-pub-5026929321885207/6789224225';
+  final String _adUnitId = 'ca-app-pub-5026929321885207/6789224225';
 
   @override
   void initState() {
