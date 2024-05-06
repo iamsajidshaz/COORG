@@ -1,11 +1,13 @@
+import 'package:coorg/utils/ad_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:readmore/readmore.dart';
 
 import 'view_gallery_image.dart';
 
-class DetailedPlace extends StatelessWidget {
+class DetailedPlace extends StatefulWidget {
   final String place;
   final String dest;
   final String imageUrl;
@@ -34,6 +36,44 @@ class DetailedPlace extends StatelessWidget {
       required this.lang});
 
   @override
+  State<DetailedPlace> createState() => _DetailedPlaceState();
+}
+
+class _DetailedPlaceState extends State<DetailedPlace> {
+  InterstitialAd? _interstitialAd;
+
+  //Implement _loadInterstitialAd()
+  void _loadInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              _openMap();
+            },
+          );
+
+          setState(() {
+            _interstitialAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {
+          //  print('Failed to load an interstitial ad: ${err.message}');
+        },
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    //  implement initState
+    super.initState();
+    _loadInterstitialAd();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
@@ -46,15 +86,15 @@ class DetailedPlace extends StatelessWidget {
               left: 0,
               right: 0,
               child: Hero(
-                tag: imageUrl,
+                tag: widget.imageUrl,
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => ViewImage(
-                                imageUrl: imageUrl,
-                                imageName: place,
+                                imageUrl: widget.imageUrl,
+                                imageName: widget.place,
                               )),
                     );
                   },
@@ -64,7 +104,7 @@ class DetailedPlace extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.background,
                       image: DecorationImage(
-                        image: AssetImage(imageUrl),
+                        image: AssetImage(widget.imageUrl),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -129,7 +169,7 @@ class DetailedPlace extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "$place, $dest",
+                            "${widget.place}, ${widget.dest}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 12.sp,
@@ -195,7 +235,7 @@ class DetailedPlace extends StatelessWidget {
                                   size: 20.sp,
                                 ),
                                 Text(
-                                  facOne,
+                                  widget.facOne,
                                   style: TextStyle(
                                     fontSize: 10.sp,
                                   ),
@@ -219,7 +259,7 @@ class DetailedPlace extends StatelessWidget {
                                   size: 20.sp,
                                 ),
                                 Text(
-                                  facTwo,
+                                  widget.facTwo,
                                   style: TextStyle(
                                     fontSize: 10.sp,
                                   ),
@@ -244,7 +284,7 @@ class DetailedPlace extends StatelessWidget {
                                   size: 20.sp,
                                 ),
                                 Text(
-                                  facThree,
+                                  widget.facThree,
                                   style: TextStyle(
                                     fontSize: 10.sp,
                                   ),
@@ -280,7 +320,7 @@ class DetailedPlace extends StatelessWidget {
                           SizedBox(
                             width: MediaQuery.of(context).size.width - 40.w,
                             child: ReadMoreText(
-                              desc,
+                              widget.desc,
                               style: TextStyle(fontSize: 12.sp),
                               trimLines: 3,
                               colorClickableText: Colors.pink,
@@ -331,8 +371,8 @@ class DetailedPlace extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ViewImage(
-                                          imageUrl: imageOne,
-                                          imageName: place,
+                                          imageUrl: widget.imageOne,
+                                          imageName: widget.place,
                                         )),
                               );
                             },
@@ -342,7 +382,7 @@ class DetailedPlace extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: Colors.grey,
                                   image: DecorationImage(
-                                    image: AssetImage(imageOne),
+                                    image: AssetImage(widget.imageOne),
                                     fit: BoxFit.cover,
                                   ),
                                   borderRadius: const BorderRadius.all(
@@ -355,8 +395,8 @@ class DetailedPlace extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ViewImage(
-                                          imageUrl: imageTwo,
-                                          imageName: place,
+                                          imageUrl: widget.imageTwo,
+                                          imageName: widget.place,
                                         )),
                               );
                             },
@@ -366,7 +406,7 @@ class DetailedPlace extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: Colors.grey,
                                   image: DecorationImage(
-                                    image: AssetImage(imageTwo),
+                                    image: AssetImage(widget.imageTwo),
                                     // AssetImage(
                                     //     "assets/images/coorg/abby.jpg"),
                                     fit: BoxFit.cover,
@@ -381,8 +421,8 @@ class DetailedPlace extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ViewImage(
-                                          imageUrl: imageThree,
-                                          imageName: place,
+                                          imageUrl: widget.imageThree,
+                                          imageName: widget.place,
                                         )),
                               );
                             },
@@ -392,7 +432,7 @@ class DetailedPlace extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: Colors.grey,
                                   image: DecorationImage(
-                                    image: AssetImage(imageThree),
+                                    image: AssetImage(widget.imageThree),
                                     fit: BoxFit.cover,
                                   ),
                                   borderRadius: const BorderRadius.all(
@@ -418,11 +458,14 @@ class DetailedPlace extends StatelessWidget {
                           minimumSize: Size.fromHeight(40.h),
                           shape: const StadiumBorder(),
                         ),
-                        onPressed: () => MapsLauncher.launchCoordinates(
-                          double.parse(lat.toString()),
-                          double.parse(lang.toString()),
-                          place,
-                        ),
+                        onPressed: () {
+                          // show ad if loaded
+                          if (_interstitialAd != null) {
+                            _interstitialAd?.show();
+                          } else {
+                            _openMap();
+                          }
+                        },
                         child: Text(
                           'Get Location',
                           style: TextStyle(
@@ -444,6 +487,14 @@ class DetailedPlace extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _openMap() {
+    MapsLauncher.launchCoordinates(
+      double.parse(widget.lat.toString()),
+      double.parse(widget.lang.toString()),
+      widget.place,
     );
   }
 }

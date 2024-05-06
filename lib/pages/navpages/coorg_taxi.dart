@@ -1,5 +1,4 @@
-import 'package:coorg/pages/taxipage_detailed.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:coorg/utils/ad_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -23,7 +22,7 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
   // final String _adUnitId = 'ca-app-pub-3940256099942544/6300978111';
 
   // my banner ad id
-  final String _adUnitId = 'ca-app-pub-5026929321885207/6789224225';
+  // final String _adUnitId = 'ca-app-pub-5026929321885207/6789224225';
 
   /// Declare this variable
   // late int selectedRadioTile;
@@ -32,9 +31,27 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
   @override
   void initState() {
     super.initState();
-    _loadAd();
+    // _loadAd();
     // selectedRadio = 0;
     // selectedRadioTile = 0;
+
+    //Load a banner ad
+    BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: AdRequest(),
+      size: AdSize.fullBanner,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() {
+            _bannerAd = ad as BannerAd;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          //  print('Failed to load a banner ad: ${err.message}');
+          ad.dispose();
+        },
+      ),
+    ).load();
   }
 
   // setSelectedRadioTile(int val) {
@@ -472,31 +489,31 @@ class _CoorgTaxiState extends State<CoorgTaxi> {
   /// Loads and shows a banner ad.
   ///
   /// Dimensions of the ad are determined by the AdSize class.
-  void _loadAd() async {
-    BannerAd(
-      adUnitId: _adUnitId,
-      request: const AdRequest(),
-      size: AdSize.fullBanner,
-      listener: BannerAdListener(
-        // Called when an ad is successfully received.
-        onAdLoaded: (ad) {
-          setState(() {
-            _bannerAd = ad as BannerAd;
-          });
-        },
-        // Called when an ad request failed.
-        onAdFailedToLoad: (ad, err) {
-          ad.dispose();
-        },
-        // Called when an ad opens an overlay that covers the screen.
-        onAdOpened: (Ad ad) {},
-        // Called when an ad removes an overlay that covers the screen.
-        onAdClosed: (Ad ad) {},
-        // Called when an impression occurs on the ad.
-        onAdImpression: (Ad ad) {},
-      ),
-    ).load();
-  }
+  // void _loadAd() async {
+  //   BannerAd(
+  //     adUnitId: _adUnitId,
+  //     request: const AdRequest(),
+  //     size: AdSize.fullBanner,
+  //     listener: BannerAdListener(
+  //       // Called when an ad is successfully received.
+  //       onAdLoaded: (ad) {
+  //         setState(() {
+  //           _bannerAd = ad as BannerAd;
+  //         });
+  //       },
+  //       // Called when an ad request failed.
+  //       onAdFailedToLoad: (ad, err) {
+  //         ad.dispose();
+  //       },
+  //       // Called when an ad opens an overlay that covers the screen.
+  //       onAdOpened: (Ad ad) {},
+  //       // Called when an ad removes an overlay that covers the screen.
+  //       onAdClosed: (Ad ad) {},
+  //       // Called when an impression occurs on the ad.
+  //       onAdImpression: (Ad ad) {},
+  //     ),
+  //   ).load();
+  // }
 
   @override
   void dispose() {
