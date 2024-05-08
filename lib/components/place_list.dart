@@ -40,11 +40,11 @@ class PlacesList extends StatelessWidget {
                   )),
         );
       },
-      child: Hero(
-        tag: image,
-        child: Column(
-          children: [
-            Container(
+      child: Column(
+        children: [
+          Hero(
+            tag: image,
+            child: Container(
               width: 200.w,
               height: 200.h,
               decoration: BoxDecoration(
@@ -58,27 +58,27 @@ class PlacesList extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(left: 5),
-              width: 200.w,
-              height: 40.h,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(12),
-                  bottomRight: Radius.circular(12),
-                ),
-              ),
-              child: Text(
-                text,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                    color: Colors.black87, fontWeight: FontWeight.bold),
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(left: 5),
+            width: 200.w,
+            height: 40.h,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12),
               ),
             ),
-          ],
-        ),
+            child: Text(
+              text,
+              textAlign: TextAlign.start,
+              style: const TextStyle(
+                  color: Colors.black87, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
       ),
     );
     //  Container(

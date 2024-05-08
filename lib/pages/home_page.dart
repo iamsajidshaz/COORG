@@ -1,4 +1,5 @@
 import 'package:coorg/pages/navpages/about.dart';
+import 'package:coorg/pages/navpages/coming_soon_page.dart';
 import 'package:coorg/pages/navpages/coorg_taxi.dart';
 import 'package:coorg/pages/navpages/gallery.dart';
 import 'package:coorg/pages/navpages/home.dart';
@@ -26,7 +27,10 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     const Home(),
     ExploreCoorgPage(),
-    const CoorgTaxi(),
+    // const CoorgTaxi(),
+    //  const ComingSoon(),
+    const ComingSoon(),
+
     GalleryPage(),
     const AboutPage(),
   ];

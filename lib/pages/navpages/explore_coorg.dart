@@ -34,7 +34,7 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
     //Load a banner ad
     BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.fullBanner,
       listener: BannerAdListener(
         onAdLoaded: (ad) {
@@ -145,13 +145,13 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
         // ),
         // //
         SizedBox(
-          height: 350.h / 2,
+          height: 300.h / 2,
         ),
         //
         SizedBox(
           width: 360.w,
           height: 180.h,
-          child: Lottie.asset('assets/images/homestay_anim.json'),
+          child: Lottie.asset('assets/images/stayloading_anim.json'),
         ),
 
         SizedBox(
@@ -169,7 +169,10 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
             ),
           ),
         ),
-
+        SizedBox(
+          height: 50.h / 2,
+        ),
+        //
         if (_bannerAd != null)
           SizedBox(
             width: _bannerAd!.size.width.toDouble().w,
