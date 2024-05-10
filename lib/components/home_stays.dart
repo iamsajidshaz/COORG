@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeStaysList extends StatelessWidget {
   final String image;
+  final String label;
   const HomeStaysList({
     super.key,
     required this.image,
+    required this.label,
   });
 
   @override
@@ -44,7 +46,7 @@ class HomeStaysList extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "The Ibni, Resort & Stay, Madikeri",
+                label,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.sp,
