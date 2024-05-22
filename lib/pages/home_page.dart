@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.location_circle),
-              label: 'Explore',
+              label: 'Explorer',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.local_taxi),
