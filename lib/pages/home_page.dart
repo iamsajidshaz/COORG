@@ -1,6 +1,5 @@
 import 'package:coorg/pages/navpages/about.dart';
 import 'package:coorg/pages/navpages/coming_soon_page.dart';
-import 'package:coorg/pages/navpages/coorg_taxi.dart';
 import 'package:coorg/pages/navpages/gallery.dart';
 import 'package:coorg/pages/navpages/home.dart';
 import 'package:coorg/pages/navpages/explore_coorg.dart';
