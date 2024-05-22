@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../components/home_stays.dart';
+import '../../utils/home_stay_list.dart';
 // import '../../utils/home_stay_list.dart';
 
 class ExploreCoorgPage extends StatefulWidget {
@@ -14,7 +17,7 @@ class ExploreCoorgPage extends StatefulWidget {
 }
 
 class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
-  //List<HomeStays> homestays = allHomeStays;
+  List<HomeStays> homestays = allHomeStays;
   BannerAd? _bannerAd;
 
   @override
@@ -157,32 +160,37 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
         // home stay list
         Container(
           margin: const EdgeInsets.only(left: 25, top: 12),
-          height: 200.h,
+          height: 210.h,
           child: Padding(
             padding: const EdgeInsets.only(right: 12),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              //  itemCount: allHomeStays.length,
-              itemCount: 10,
+              itemCount: allHomeStays.length,
+              // itemCount: 10,
               itemBuilder: (context, index) {
-                // final homestay = homestays[index];
-                // return HomeStaysList(
-                //   image: homestay.urlImage,
-                //   label: '${homestay.title}, ${homestay.subTitle}',
-                // );
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 12),
-                  child: Container(
-                    width: 300.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.sp),
-                      color: Colors.green,
-                    ),
-                    child: const Center(
-                      child: Text("Coming Soon"),
-                    ),
-                  ),
+                final homestay = homestays[index];
+                return HomeStaysList(
+                  image: homestay.urlImage,
+                  label: homestay.title,
+                  subTitle: homestay.subTitle,
+                  imageOne: homestay.imageOne,
+                  imageTwo: homestay.imageTwo,
+                  imageThree: homestay.imageThree,
+                  fac: homestay.facilities,
                 );
+                // return Padding(
+                //   padding: const EdgeInsets.only(top: 8.0, right: 12),
+                //   child: Container(
+                //     width: 300.w,
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(10.sp),
+                //       color: Colors.green,
+                //     ),
+                //     child: const Center(
+                //       child: Text("Coming Soon"),
+                //     ),
+                //   ),
+                // );
               },
             ),
           ),

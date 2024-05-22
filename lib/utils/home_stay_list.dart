@@ -2,49 +2,57 @@ class HomeStays {
   final String title;
   final String subTitle;
   final String urlImage;
+  final String imageOne;
+  final String imageTwo;
+  final String imageThree;
+  final List<String> facilities;
 
   const HomeStays({
     required this.title,
     required this.subTitle,
     required this.urlImage,
+    required this.imageOne,
+    required this.imageTwo,
+    required this.imageThree,
+    required this.facilities,
   });
 }
 
 const allHomeStays = [
   HomeStays(
-    title: 'Wild Forest Stay',
-    subTitle: 'Kushalnagara',
-    urlImage:
-        "https://img.freepik.com/free-photo/residential-brick-house_1388-112.jpg?t=st=1714554950~exp=1714558550~hmac=7f2d0ba80135404f3e18b11fc3f9b46159437ca174048758e3ada8e6ca70c755&w=740",
+    title: 'RICHBERRY- A Premium Plantation Villa',
+    subTitle: 'BM Road, 7th hoskote, Suntikoppa',
+    urlImage: "assets/images/richberry.jpg",
+    imageOne: "assets/images/richberry_one.jpg",
+    imageTwo: "assets/images/richberry_two.jpg",
+    imageThree: "assets/images/richberry_three.jpg",
+    facilities: ["fac1", "fac2"],
   ),
   HomeStays(
-    title: 'Nest Stay',
-    subTitle: 'Madikeri',
-    urlImage:
-        "https://img.freepik.com/free-photo/beach-blue-sky-holiday-morning-landscape_1122-2309.jpg?t=st=1714554951~exp=1714558551~hmac=30e706557b4c83349586172fa0ad8e70522db45bd088c064df5a220a1e04bb5c&w=740",
+    title: "Green Nest Plantation(Kingmaker's Plantation)",
+    subTitle: "Kadagadal - Boikeri Rd, Ibnivalvadi Rural",
+    urlImage: "assets/images/kingmaker.jpg",
+    imageOne: "assets/images/kingmaker_one.jpg",
+    imageTwo: "assets/images/kingmaker_two.jpg",
+    imageThree: "assets/images/kingmaker_three.jpg",
+    facilities: ["fac1", "fac2", "fac3"],
   ),
   HomeStays(
-    title: 'Coorg Bounty Stay',
-    subTitle: 'Virajpete',
-    urlImage:
-        "https://img.freepik.com/free-photo/residential-brick-house_1388-112.jpg?t=st=1714554950~exp=1714558550~hmac=7f2d0ba80135404f3e18b11fc3f9b46159437ca174048758e3ada8e6ca70c755&w=740",
+    title: 'RICHBERRY- A Premium Plantation Villa',
+    subTitle: 'BM Road, 7th hoskote, Suntikoppa',
+    urlImage: "assets/images/richberry.jpg",
+    imageOne: "assets/images/richberry_one.jpg",
+    imageTwo: "assets/images/richberry_two.jpg",
+    imageThree: "assets/images/richberry_three.jpg",
+    facilities: ["fac1", "fac2", "fac3", "fac4"],
   ),
   HomeStays(
-    title: 'Coorg Bounty Stay',
-    subTitle: 'Virajpete',
-    urlImage:
-        "https://img.freepik.com/free-photo/beach-blue-sky-holiday-morning-landscape_1122-2309.jpg?t=st=1714554951~exp=1714558551~hmac=30e706557b4c83349586172fa0ad8e70522db45bd088c064df5a220a1e04bb5c&w=740",
-  ),
-  HomeStays(
-    title: 'Coorg Bounty Stay',
-    subTitle: 'Virajpete',
-    urlImage:
-        "https://img.freepik.com/free-photo/residential-brick-house_1388-112.jpg?t=st=1714554950~exp=1714558550~hmac=7f2d0ba80135404f3e18b11fc3f9b46159437ca174048758e3ada8e6ca70c755&w=740",
-  ),
-  HomeStays(
-    title: 'Coorg Bounty Stay',
-    subTitle: 'Virajpete',
-    urlImage:
-        "https://img.freepik.com/free-photo/beach-blue-sky-holiday-morning-landscape_1122-2309.jpg?t=st=1714554951~exp=1714558551~hmac=30e706557b4c83349586172fa0ad8e70522db45bd088c064df5a220a1e04bb5c&w=740",
+    title: 'RICHBERRY- A Premium Plantation Villa',
+    subTitle: 'BM Road, 7th hoskote, Suntikoppa',
+    urlImage: "assets/images/richberry.jpg",
+    imageOne: "assets/images/richberry_one.jpg",
+    imageTwo: "assets/images/richberry_two.jpg",
+    imageThree: "assets/images/richberry_three.jpg",
+    facilities: ["fac1", "fac2", "fac3", "fac4", "fac5"],
   ),
 ];
