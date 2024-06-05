@@ -1,4 +1,4 @@
-import 'package:coorg/pages/popular_place_detailed.dart';
+import 'package:coorg/pagesss/popular_place_detailed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

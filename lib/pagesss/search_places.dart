@@ -1,5 +1,5 @@
 import 'package:coorg/utils/places.dart';
-import 'package:coorg/pages/explore_place_detailed.dart';
+import 'package:coorg/pagesss/explore_place_detailed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

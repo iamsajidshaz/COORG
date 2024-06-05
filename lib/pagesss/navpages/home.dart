@@ -1,6 +1,6 @@
 import 'package:coorg/components/destination_list.dart';
 import 'package:coorg/components/place_list.dart';
-import 'package:coorg/pages/search_places.dart';
+import 'package:coorg/pagesss/search_places.dart';
 import 'package:coorg/utils/destinations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../pages/view_gallery_image.dart';
+import '../pagesss/view_gallery_image.dart';
 
 class GalleryItem extends StatelessWidget {
   final String image;

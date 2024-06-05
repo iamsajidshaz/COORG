@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coorg/utils/ad_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,9 +24,6 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
   @override
   void initState() {
     super.initState();
-    //  _loadAd();
-    // selectedRadio = 0;
-    // selectedRadioTile = 0;
 
     //Load a banner ad
     BannerAd(
@@ -51,7 +49,7 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
     return ListView(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 25.0, top: 25, right: 8),
+          padding: const EdgeInsets.only(left: 12.0, top: 25, right: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -115,7 +113,7 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
                 color: const Color(0xfff4f6fd),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              margin: const EdgeInsets.only(left: 12, right: 12, top: 10),
+              //  margin: const EdgeInsets.only(left: 12, right: 12, top: 10),
               child: Row(
                 //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -141,60 +139,74 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
         ),
 // banner ad
         if (_bannerAd != null)
-          SizedBox(
-            width: _bannerAd!.size.width.toDouble().w,
-            height: _bannerAd!.size.height.toDouble().h,
-            child: AdWidget(ad: _bannerAd!),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              width: _bannerAd!.size.width.toDouble().w,
+              height: _bannerAd!.size.height.toDouble().h,
+              child: AdWidget(ad: _bannerAd!),
+            ),
           ),
 //
         // 1. home stays / resorts
 
         // header
         Padding(
-          padding: const EdgeInsets.only(left: 25.0, top: 25, right: 25),
+          padding: const EdgeInsets.only(left: 10.0, top: 25, right: 25),
           child: Text(
             'Home Stays',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
           ),
         ),
-        // home stay list
+
+        //  homestay listing
         Container(
-          margin: const EdgeInsets.only(left: 25, top: 12),
+          margin: const EdgeInsets.only(left: 10, top: 12),
           height: 210.h,
           child: Padding(
             padding: const EdgeInsets.only(right: 12),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: allHomeStays.length,
-              // itemCount: 10,
-              itemBuilder: (context, index) {
-                final homestay = homestays[index];
-                return HomeStaysList(
-                  image: homestay.urlImage,
-                  label: homestay.title,
-                  subTitle: homestay.subTitle,
-                  imageOne: homestay.imageOne,
-                  imageTwo: homestay.imageTwo,
-                  imageThree: homestay.imageThree,
-                  fac: homestay.facilities,
+            child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('Homestays')
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return const Center(child: Text('Something went wrong'));
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    var homestay = snapshot.data!.docs[index];
+
+                    return HomeStaysList(
+                      image: homestay['image_one'],
+                      label: homestay['Name'],
+                      subTitle: homestay['Location'],
+                      imageOne: homestay['image_two'],
+                      imageTwo: homestay['image_three'],
+                      imageThree: homestay['image_four'],
+                      fac1: homestay['fac1'],
+                      fac2: homestay['fac2'],
+                      fac3: homestay['fac3'],
+                      fac4: homestay['fac4'],
+                      fac5: homestay['fac5'],
+                    );
+                  },
                 );
-                // return Padding(
-                //   padding: const EdgeInsets.only(top: 8.0, right: 12),
-                //   child: Container(
-                //     width: 300.w,
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(10.sp),
-                //       color: Colors.green,
-                //     ),
-                //     child: const Center(
-                //       child: Text("Coming Soon"),
-                //     ),
-                //   ),
-                // );
               },
             ),
           ),
         ),
+
+        // === END of home stay list ================================================
 
 // 2. Rooms
         // header

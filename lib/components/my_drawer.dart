@@ -1,7 +1,7 @@
 import 'package:coorg/components/my_drawer_tile.dart';
 import 'package:flutter/material.dart';
 
-import '../pages/settings_page.dart';
+import '../pagesss/settings_page.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});

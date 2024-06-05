@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:coorg/pages/home_page.dart';
+import 'package:coorg/services/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -92,7 +92,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             // ignore: use_build_context_synchronously
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomePage()));
+                                builder: (context) => const Wrapper()));
                       },
                       child: const Text(
                         "Get Started",

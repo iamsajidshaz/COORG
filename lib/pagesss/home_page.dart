@@ -1,8 +1,8 @@
-import 'package:coorg/pages/navpages/about.dart';
-import 'package:coorg/pages/navpages/coming_soon_page.dart';
-import 'package:coorg/pages/navpages/gallery.dart';
-import 'package:coorg/pages/navpages/home.dart';
-import 'package:coorg/pages/navpages/explore_coorg.dart';
+import 'package:coorg/pagesss/navpages/about.dart';
+import 'package:coorg/pagesss/navpages/coming_soon_page.dart';
+import 'package:coorg/pagesss/navpages/gallery.dart';
+import 'package:coorg/pagesss/navpages/home.dart';
+import 'package:coorg/pagesss/navpages/explore_coorg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

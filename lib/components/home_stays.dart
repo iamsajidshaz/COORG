@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../pages/home_stay_view.dart';
+import '../pagesss/home_stay_view.dart';
 
 class HomeStaysList extends StatelessWidget {
   final String image;
@@ -11,7 +11,11 @@ class HomeStaysList extends StatelessWidget {
   final String imageOne;
   final String imageTwo;
   final String imageThree;
-  final List<String> fac;
+  final String fac1;
+  final String fac2;
+  final String fac3;
+  final String fac4;
+  final String fac5;
 
   const HomeStaysList({
     super.key,
@@ -21,7 +25,11 @@ class HomeStaysList extends StatelessWidget {
     required this.imageOne,
     required this.imageTwo,
     required this.imageThree,
-    required this.fac,
+    required this.fac1,
+    required this.fac2,
+    required this.fac3,
+    required this.fac4,
+    required this.fac5,
   });
 
   @override
@@ -32,7 +40,11 @@ class HomeStaysList extends StatelessWidget {
           context,
           CupertinoPageRoute(
             builder: (context) => HomeStayView(
-              facils: fac,
+              fac1: fac1,
+              fac2: fac2,
+              fac3: fac3,
+              fac4: fac4,
+              fac5: fac5,
             ),
           ),
         );
@@ -49,9 +61,9 @@ class HomeStaysList extends StatelessWidget {
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 ),
-                // color: Colors.blue,
+                color: Colors.blue,
                 image: DecorationImage(
-                  image: AssetImage(
+                  image: NetworkImage(
                     image,
                   ),
                   fit: BoxFit.cover,

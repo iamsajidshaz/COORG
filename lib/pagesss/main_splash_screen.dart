@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:coorg/pages/splash_screen.dart';
+import 'package:coorg/pagesss/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -176,7 +176,8 @@ class _MainSplashScreenState extends State<MainSplashScreen> {
     if (_interstitialAd != null) {
       _interstitialAd?.show();
     } else {
-      _moveToHome();
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const SplashScreen()));
     }
   }
 }
