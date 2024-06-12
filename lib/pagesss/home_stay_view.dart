@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,9 @@ class HomeStayView extends StatefulWidget {
   final String fac3;
   final String fac4;
   final String fac5;
+  final String imageOne;
+  final String imageTwo;
+  final String imageThree;
   const HomeStayView({
     super.key,
     required this.fac1,
@@ -15,6 +19,9 @@ class HomeStayView extends StatefulWidget {
     required this.fac3,
     required this.fac4,
     required this.fac5,
+    required this.imageOne,
+    required this.imageTwo,
+    required this.imageThree,
   });
 
   @override
@@ -24,12 +31,22 @@ class HomeStayView extends StatefulWidget {
 class _HomeStayViewState extends State<HomeStayView> {
   List<String> facList = [];
   List<IconData> facIconList = [];
+  List<String> imageList = [];
 
   @override
   void initState() {
     super.initState();
     facList = initializeFacList();
     facIconList = initializeFacIconList();
+    imageList = initializeImageList();
+  }
+
+  List<String> initializeImageList() {
+    return [
+      widget.imageOne,
+      widget.imageTwo,
+      widget.imageThree,
+    ];
   }
 
   List<String> initializeFacList() {
@@ -62,16 +79,16 @@ class _HomeStayViewState extends State<HomeStayView> {
       body: ListView(
         children: [
 //image
-          Container(
-            height: 690.w / 2 - 100,
-            decoration: BoxDecoration(
-              // borderRadius: BorderRadius.only(
-              //   bottomLeft: Radius.circular(12),
-              //   bottomRight: Radius.circular(12),
-              // ),
-              image: DecorationImage(
-                image: AssetImage("assets/images/richberry.jpg"),
-                fit: BoxFit.cover,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 690.w / 2,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                image: const DecorationImage(
+                  image: AssetImage("assets/images/richberry.jpg"),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -142,9 +159,14 @@ class _HomeStayViewState extends State<HomeStayView> {
           ),
 //
           Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Divider(
-              color: Colors.grey.shade300,
+            padding: const EdgeInsets.only(
+              left: 12.0,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: Divider(
+                color: Colors.grey.shade300,
+              ),
             ),
           ),
 
@@ -153,11 +175,13 @@ class _HomeStayViewState extends State<HomeStayView> {
           // 1. facilities
 
           Padding(
-            padding: const EdgeInsets.only(left: 12.0, top: 20),
+            padding: const EdgeInsets.only(
+              left: 12.0,
+            ),
             child: Row(
               children: [
                 Icon(
-                  CupertinoIcons.flag_circle,
+                  CupertinoIcons.tray,
                   color: Colors.black,
                   size: 18.sp,
                 ),
@@ -182,8 +206,8 @@ class _HomeStayViewState extends State<HomeStayView> {
           // list of facilities
 
           Padding(
-            padding: const EdgeInsets.only(left: 12.0, top: 20),
-            child: Container(
+            padding: const EdgeInsets.only(top: 10),
+            child: SizedBox(
               height: 65.h,
               // color: Colors.amber,
               child: ListView.builder(
@@ -195,8 +219,9 @@ class _HomeStayViewState extends State<HomeStayView> {
                     child: Container(
                       height: 50.h,
                       width: 360.w * 0.25,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.white,
+                        border: Border.all(color: Colors.grey.shade400),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
@@ -228,75 +253,8 @@ class _HomeStayViewState extends State<HomeStayView> {
             padding: const EdgeInsets.only(left: 12.0, top: 20),
             child: Row(
               children: [
-                Container(
-                  height: 50.h,
-                  width: 360.w * 0.25,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.local_parking,
-                        color: Colors.red,
-                        size: 20.sp,
-                      ),
-                      Text(
-                        "Parking",
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // Container(
-          //   margin: const EdgeInsets.only(left: 25, top: 12),
-          //   height: 50.h,
-          //   child: Padding(
-          //     padding: const EdgeInsets.only(right: 12),
-          //     child: ListView.builder(
-          //       scrollDirection: Axis.horizontal,
-          //       itemCount: facils.length,
-          //       // itemCount: 10,
-          //       itemBuilder: (context, index) {
-          //         final facilss = facils[index];
-
-          //         return Padding(
-          //           padding: const EdgeInsets.only(top: 8.0, right: 12),
-          //           child: Container(
-          //             width: 100.w,
-          //             decoration: BoxDecoration(
-          //               borderRadius: BorderRadius.circular(10.sp),
-          //               color: Colors.green,
-          //             ),
-          //             child: Center(
-          //               child: Text(facilss),
-          //             ),
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // ),
-
-          // 2. facilities
-
-          Padding(
-            padding: const EdgeInsets.only(left: 12.0, top: 20),
-            child: Row(
-              children: [
                 Icon(
                   CupertinoIcons.photo,
-                  color: Colors.red,
                   size: 18.sp,
                 ),
                 SizedBox(
@@ -315,6 +273,179 @@ class _HomeStayViewState extends State<HomeStayView> {
             ),
           ),
 // list of images
+
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: SizedBox(
+              height: 150.h,
+              // color: Colors.amber,
+              child: ListView.builder(
+                itemCount: imageList.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 200.w,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey.shade400),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        image: DecorationImage(
+                          image: NetworkImage(imageList[index]),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0, top: 20),
+            child: Row(
+              children: [
+                Icon(
+                  CupertinoIcons.sportscourt,
+                  size: 18.sp,
+                ),
+                SizedBox(
+                  width: 5.w,
+                ),
+                Text(
+                  "EXTRA ACTIVITIES",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp,
+                  ),
+                  //  style: Styles.headLineStyle3
+                  //       .copyWith(color: Colors.black87),
+                ),
+              ],
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.green),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Icon(Icons.arrow_right),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    "Fire Camp",
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.green),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Icon(Icons.arrow_right),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    "Indoor Sports",
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.green),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Icon(Icons.arrow_right),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    "Poker Club",
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                ),
+                onPressed: () {},
+                child: const Text(
+                  "SEND BOOKING INQUIRY",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+
+          const SizedBox(
+            height: 50,
+          ),
           // Container(
           //   margin: const EdgeInsets.only(left: 25, top: 12),
           //   height: 100.h,
@@ -351,11 +482,11 @@ class _HomeStayViewState extends State<HomeStayView> {
 
           // 3. get direction
 
-          Container(
-            height: 50.h,
-            width: 50.w,
-            color: Colors.amber,
-          ),
+          // Container(
+          //   height: 50.h,
+          //   width: 50.w,
+          //   color: Colors.amber,
+          // ),
 
           // 4. book now
         ],

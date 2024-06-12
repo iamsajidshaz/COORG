@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:coorg/pagesss/home_page.dart';
 import 'package:coorg/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
@@ -294,6 +295,11 @@ class _LoginPageState extends State<LoginPage> {
                                 isLoading = false;
                               });
                               // Navigator.pop(context);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()),
+                              );
                             },
                             icon: const Image(
                               width: 24,

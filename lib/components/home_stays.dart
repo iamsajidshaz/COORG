@@ -45,6 +45,9 @@ class HomeStaysList extends StatelessWidget {
               fac3: fac3,
               fac4: fac4,
               fac5: fac5,
+              imageOne: imageOne,
+              imageTwo: imageTwo,
+              imageThree: imageThree,
             ),
           ),
         );
