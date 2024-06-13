@@ -7,6 +7,59 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:918807392539:android:949349e560f3b7a47523be",
+        "android_client_info": {
+          "package_name": "com.shaztech.coorgtheexplorer.admin_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918807392539-ag3nlfhjl8ml2f274rgsp5u5pp1e1r7s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shaztech.coorgtheexplorer.admin_app",
+            "certificate_hash": "f4dfe6dcefbfa44ebf753f262bb4a4cf1160059a"
+          }
+        },
+        {
+          "client_id": "918807392539-h9dni7a8nda69np23n3ag9p7e85ea6ki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shaztech.coorgtheexplorer.admin_app",
+            "certificate_hash": "ea30a0f38914880aebdeb1e624d3fe1d25fa0f15"
+          }
+        },
+        {
+          "client_id": "918807392539-re2n6rbepek0q2k7anri2um38si41jks.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shaztech.coorgtheexplorer.admin_app",
+            "certificate_hash": "0303d368e2b72a62e48023fa89c3b0d9760aac82"
+          }
+        },
+        {
+          "client_id": "918807392539-dtgt3bupbvgmk53mqhi1njgo20tu0g06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuc4ruaD3iGPtrjZgySChAE7udh1n-mlo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918807392539-dtgt3bupbvgmk53mqhi1njgo20tu0g06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:918807392539:android:b9a475d56bcf74357523be",
         "android_client_info": {
           "package_name": "com.shaztech.coorgtheexplorerapp.coorg"
@@ -14,11 +67,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "918807392539-p933qgeupmadca3jn63hqsf1b6lr19e7.apps.googleusercontent.com",
+          "client_id": "918807392539-9a0mn73h0m4r1vd1btsb4sm4i2th9lom.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.shaztech.coorgtheexplorerapp.coorg",
-            "certificate_hash": "33af3d849e37aca89e50259c42361bba45bfa042"
+            "certificate_hash": "809802eee7ffc46d30b5fbf2f429a8afa2b02e74"
+          }
+        },
+        {
+          "client_id": "918807392539-s1269207odr1ff86q190i9d52249vmn5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shaztech.coorgtheexplorerapp.coorg",
+            "certificate_hash": "0303d368e2b72a62e48023fa89c3b0d9760aac82"
           }
         },
         {

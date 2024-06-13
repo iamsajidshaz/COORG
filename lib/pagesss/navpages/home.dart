@@ -19,15 +19,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  InterstitialAd? _interstitialAd;
   BannerAd? _bannerAd;
   List<Places> places = allPlaces;
   List<Destinations> destinations = allDestinations;
 
   @override
   void initState() {
-    super.initState();
+    _loadInterstitialAd();
     //  Load a banner ad
     _loadBannerAd();
+    // load int ad
+
+    super.initState();
   }
 
   @override
@@ -54,10 +58,18 @@ class _HomeState extends State<Home> {
               // icon
               IconButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SettingsPage()));
+                  if (_interstitialAd != null) {
+                    _interstitialAd?.show();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SettingsPage()));
+                  } else {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SettingsPage()));
+                  }
                 },
                 icon: Icon(
                   CupertinoIcons.settings,
@@ -95,10 +107,18 @@ class _HomeState extends State<Home> {
           child: GestureDetector(
             //on tap
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SearchPlaces()),
-              );
+              if (_interstitialAd != null) {
+                _interstitialAd?.show();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SearchPlaces()),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SearchPlaces()),
+                );
+              }
             },
             //
             child: Container(
@@ -172,10 +192,13 @@ class _HomeState extends State<Home> {
         // banner ad
 
         if (_bannerAd != null)
-          SizedBox(
-            width: _bannerAd!.size.width.toDouble().w,
-            height: _bannerAd!.size.height.toDouble().h,
-            child: AdWidget(ad: _bannerAd!),
+          Padding(
+            padding: const EdgeInsets.only(left: 25.0, top: 25, right: 10),
+            child: SizedBox(
+              width: _bannerAd!.size.width.toDouble().w,
+              height: _bannerAd!.size.height.toDouble().h,
+              child: AdWidget(ad: _bannerAd!),
+            ),
           ),
 
         // header
@@ -256,12 +279,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  @override
-  void dispose() {
-    _bannerAd?.dispose();
-    super.dispose();
-  }
-
+// banner ad
   void _loadBannerAd() {
     BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
@@ -279,5 +297,30 @@ class _HomeState extends State<Home> {
         },
       ),
     ).load();
+  }
+
+  // int ad
+  void _loadInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              // ad.dispose();
+            },
+            onAdShowedFullScreenContent: (ad) {},
+          );
+
+          setState(() {
+            _interstitialAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {
+          print('Failed to load an interstitial ad: ${err.message}');
+        },
+      ),
+    );
   }
 }

@@ -17,7 +17,8 @@ class ExploreCoorgPage extends StatefulWidget {
   State<ExploreCoorgPage> createState() => _ExploreCoorgPageState();
 }
 
-class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
+class _ExploreCoorgPageState extends State<ExploreCoorgPage>
+    with TickerProviderStateMixin {
   List<HomeStays> homestays = allHomeStays;
   BannerAd? _bannerAd;
 
@@ -46,6 +47,10 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
 
   @override
   Widget build(BuildContext context) {
+    TabController _tabController = TabController(
+      length: 4,
+      vsync: this,
+    );
     return ListView(
       children: [
         Padding(
@@ -137,21 +142,105 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage> {
             ),
           ),
         ),
+        const SizedBox(
+          height: 25,
+        ),
+
+        // tab bar
+
+        Container(
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: TabBar(
+              controller: _tabController,
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.grey,
+              tabAlignment: TabAlignment.start,
+              indicatorPadding: EdgeInsets.zero,
+              indicatorColor: Colors.transparent,
+              // indicatorColor: Colors.black,
+              dividerColor: Colors.transparent,
+              // labelPadding: const EdgeInsets.only(
+              //   right: 20,
+              //   left: 10,
+              // ),
+              isScrollable: true,
+              tabs: [
+                Container(
+                  height: 40,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Tab(
+                    text: "HomeStay",
+                    height: 100,
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Tab(
+                    text: "Food",
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Tab(
+                    text: "Taxi",
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Tab(
+                    text: "More",
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        Container(
+          width: double.infinity,
+          height: 300,
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              Center(child: Text("HOMESTAY")),
+              Center(child: Text("FOOD")),
+              Center(child: Text("TAXI")),
+              Center(child: Text("EXTRA")),
+            ],
+          ),
+        ),
+//
 // banner ad
         if (_bannerAd != null)
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(left: 10, right: 10),
             child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(10),
-              ),
               width: _bannerAd!.size.width.toDouble().w,
               height: _bannerAd!.size.height.toDouble().h,
               child: AdWidget(ad: _bannerAd!),
             ),
           ),
-//
+
         // 1. home stays / resorts
 
         // header
