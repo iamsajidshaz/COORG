@@ -8,6 +8,7 @@ class HomeStaysList extends StatelessWidget {
   final String image;
   final String label;
   final String subTitle;
+  final String homestayID;
   final String imageOne;
   final String imageTwo;
   final String imageThree;
@@ -16,6 +17,9 @@ class HomeStaysList extends StatelessWidget {
   final String fac3;
   final String fac4;
   final String fac5;
+  final String activityOne;
+  final String activityTwo;
+  final String activityThree;
 
   const HomeStaysList({
     super.key,
@@ -30,6 +34,10 @@ class HomeStaysList extends StatelessWidget {
     required this.fac3,
     required this.fac4,
     required this.fac5,
+    required this.activityOne,
+    required this.activityTwo,
+    required this.activityThree,
+    required this.homestayID,
   });
 
   @override
@@ -48,6 +56,13 @@ class HomeStaysList extends StatelessWidget {
               imageOne: imageOne,
               imageTwo: imageTwo,
               imageThree: imageThree,
+              image: image,
+              label: label,
+              subTitle: subTitle,
+              activityOne: activityOne,
+              activityTwo: activityTwo,
+              activityThree: activityThree,
+              id: homestayID,
             ),
           ),
         );
@@ -60,11 +75,12 @@ class HomeStaysList extends StatelessWidget {
               width: 300.w,
               height: 150.h,
               decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 ),
-                color: Colors.blue,
+                color: Colors.grey,
                 image: DecorationImage(
                   image: NetworkImage(
                     image,
@@ -76,9 +92,10 @@ class HomeStaysList extends StatelessWidget {
             Container(
               width: 300.w,
               height: 50.h,
-              decoration: const BoxDecoration(
-                color: Colors.white70,
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                //  color: Color.fromARGB(179, 216, 211, 211),
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(10),
                   bottomRight: Radius.circular(10),
                 ),

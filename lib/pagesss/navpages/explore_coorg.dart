@@ -1,17 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coorg/utils/ad_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../components/home_stays.dart';
 import '../../utils/home_stay_list.dart';
-// import '../../utils/home_stay_list.dart';
 
 class ExploreCoorgPage extends StatefulWidget {
-  ExploreCoorgPage({super.key});
+  const ExploreCoorgPage({super.key});
 
   @override
   State<ExploreCoorgPage> createState() => _ExploreCoorgPageState();
@@ -33,9 +30,11 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage>
       size: AdSize.fullBanner,
       listener: BannerAdListener(
         onAdLoaded: (ad) {
-          setState(() {
-            _bannerAd = ad as BannerAd;
-          });
+          if (this.mounted) {
+            setState(() {
+              _bannerAd = ad as BannerAd;
+            });
+          }
         },
         onAdFailedToLoad: (ad, err) {
           //  print('Failed to load a banner ad: ${err.message}');
@@ -47,114 +46,86 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage>
 
   @override
   Widget build(BuildContext context) {
-    TabController _tabController = TabController(
+    TabController tabController = TabController(
       length: 4,
       vsync: this,
     );
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 12.0, top: 25, right: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // icon
-              Icon(
-                CupertinoIcons.location_circle,
-                size: 24.sp,
-              ),
-
-              // text
-              Text(
-                "E X P L O R E   C O O R G",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
-              ),
-
-              // icon
-              IconButton(
-                onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const SettingsPage()));
-                },
-                icon: Icon(
-                  CupertinoIcons.heart_fill,
-                  color: Colors.transparent,
-                  size: 24.sp,
-                ),
-              ),
-            ],
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0.5,
+        centerTitle: true,
+        title: Text(
+          "E X P L O R E   C O O R G",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
+        ),
+        leading: const Icon(Icons.explore_rounded),
+        actions: const [
+          Icon(Icons.explore_rounded),
+          SizedBox(
+            width: 12,
+          )
+        ],
+      ),
+      body: ListView(
+        children: [
+          // search bar
+          // Padding(
+          //   padding: const EdgeInsets.all(12.0),
+          //   child: GestureDetector(
+          //     //on tap
+          //     onTap: () {
+          //       // Navigator.push(
+          //       //   context,
+          //       //   MaterialPageRoute(builder: (context) => const SearchPlaces()),
+          //       // );
+          //     },
+          //     //
+          //     child: Container(
+          //       decoration: BoxDecoration(
+          //         borderRadius: BorderRadius.circular(10),
+          //         color: const Color(0xfff4f6fd),
+          //       ),
+          //       padding:
+          //           const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          //       //  margin: const EdgeInsets.only(left: 12, right: 12, top: 10),
+          //       child: Row(
+          //         //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Icon(
+          //             Icons.search,
+          //             color: const Color.fromARGB(255, 19, 19, 18),
+          //             size: 24.sp,
+          //           ),
+          //           SizedBox(
+          //             width: 5.w,
+          //           ),
+          //           Text(
+          //             'Homestays, Hotels, Taxi, Lodges ...',
+          //             style: TextStyle(
+          //               fontSize: 12.sp,
+          //               color: Theme.of(context).colorScheme.primary,
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          const SizedBox(
+            height: 25,
           ),
-        ),
-        // gap
-        SizedBox(
-          height: 20.h,
-        ),
-        //
-        Container(
-          margin: const EdgeInsets.all(10),
-          child: Text(
-            textAlign: TextAlign.center,
-            'Find the best place to stay',
-            style: TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold),
-          ),
-        ),
-        // search bar
-        Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: GestureDetector(
-            //on tap
-            onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const SearchPlaces()),
-              // );
-            },
-            //
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: const Color(0xfff4f6fd),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              //  margin: const EdgeInsets.only(left: 12, right: 12, top: 10),
-              child: Row(
-                //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    Icons.search,
-                    color: const Color.fromARGB(255, 19, 19, 18),
-                    size: 24.sp,
-                  ),
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    'Homestays, Hotels, Resorts in Coorg',
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 25,
-        ),
 
-        // tab bar
+          // tab bar
 
-        Container(
-          child: Align(
+          Align(
             alignment: Alignment.centerLeft,
             child: TabBar(
-              controller: _tabController,
-              labelColor: Colors.black,
+              controller: tabController,
+              labelColor: Colors.green,
               unselectedLabelColor: Colors.grey,
+              splashBorderRadius: BorderRadius.circular(12),
+
               tabAlignment: TabAlignment.start,
               indicatorPadding: EdgeInsets.zero,
               indicatorColor: Colors.transparent,
@@ -174,7 +145,7 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage>
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   child: const Tab(
-                    text: "HomeStay",
+                    text: "HOMESTAYS",
                     height: 100,
                   ),
                 ),
@@ -186,7 +157,7 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage>
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   child: const Tab(
-                    text: "Food",
+                    text: "LODGES",
                   ),
                 ),
                 Container(
@@ -197,7 +168,7 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage>
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   child: const Tab(
-                    text: "Taxi",
+                    text: "TAXI",
                   ),
                 ),
                 Container(
@@ -208,260 +179,180 @@ class _ExploreCoorgPageState extends State<ExploreCoorgPage>
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   child: const Tab(
-                    text: "More",
+                    text: "FOOD",
                   ),
                 ),
               ],
             ),
           ),
-        ),
 
-        Container(
-          width: double.infinity,
-          height: 300,
-          child: TabBarView(
-            controller: _tabController,
-            children: [
-              Center(child: Text("HOMESTAY")),
-              Center(child: Text("FOOD")),
-              Center(child: Text("TAXI")),
-              Center(child: Text("EXTRA")),
-            ],
-          ),
-        ),
-//
-// banner ad
-        if (_bannerAd != null)
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Container(
-              width: _bannerAd!.size.width.toDouble().w,
-              height: _bannerAd!.size.height.toDouble().h,
-              child: AdWidget(ad: _bannerAd!),
-            ),
-          ),
+            padding: const EdgeInsets.only(left: 8.0),
+            child: SizedBox(
+              width: double.infinity,
+              height: 300,
+              child: TabBarView(
+                controller: tabController,
+                children: [
+                  //  homestay listing
+                  Container(
+                    margin: const EdgeInsets.only(left: 10, top: 12),
+                    height: 210.h,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: StreamBuilder<QuerySnapshot>(
+                        stream: FirebaseFirestore.instance
+                            .collection('Homestays')
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return const Center(
+                                child: Text('Something went wrong'));
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                          return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context, index) {
+                              var homestay = snapshot.data!.docs[index];
 
-        // 1. home stays / resorts
-
-        // header
-        Padding(
-          padding: const EdgeInsets.only(left: 10.0, top: 25, right: 25),
-          child: Text(
-            'Home Stays',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
-          ),
-        ),
-
-        //  homestay listing
-        Container(
-          margin: const EdgeInsets.only(left: 10, top: 12),
-          height: 210.h,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('Homestays')
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return const Center(child: Text('Something went wrong'));
-                }
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                return ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    var homestay = snapshot.data!.docs[index];
-
-                    return HomeStaysList(
-                      image: homestay['image_one'],
-                      label: homestay['Name'],
-                      subTitle: homestay['Location'],
-                      imageOne: homestay['image_two'],
-                      imageTwo: homestay['image_three'],
-                      imageThree: homestay['image_four'],
-                      fac1: homestay['fac1'],
-                      fac2: homestay['fac2'],
-                      fac3: homestay['fac3'],
-                      fac4: homestay['fac4'],
-                      fac5: homestay['fac5'],
-                    );
-                  },
-                );
-              },
-            ),
-          ),
-        ),
-
-        // === END of home stay list ================================================
-
-// 2. Rooms
-        // header
-        Padding(
-          padding: const EdgeInsets.only(left: 25.0, top: 25, right: 25),
-          child: Text(
-            'Rooms and Lodges',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
-          ),
-        ),
-        // list
-        Container(
-          margin: const EdgeInsets.only(left: 25, top: 12),
-          height: 150.h,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 12),
-                  child: Container(
-                    width: 300.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.sp),
-                      color: Colors.green,
-                    ),
-                    child: const Center(
-                      child: Text("Coming Soon"),
+                              return HomeStaysList(
+                                image: homestay['image_one'],
+                                label: homestay['Name'],
+                                homestayID: homestay['ID'],
+                                subTitle: homestay['Location'],
+                                imageOne: homestay['image_two'],
+                                imageTwo: homestay['image_three'],
+                                imageThree: homestay['image_four'],
+                                fac1: homestay['fac1'],
+                                fac2: homestay['fac2'],
+                                fac3: homestay['fac3'],
+                                fac4: homestay['fac4'],
+                                fac5: homestay['fac5'],
+                                activityOne: homestay["activityOne"],
+                                activityTwo: homestay["activityTwo"],
+                                activityThree: homestay["activityThree"],
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
-                );
-              },
+                  Center(child: Text("COMING SOON")),
+                  Center(child: Text("COMING SOON")),
+                  Center(child: Text("COMING SOON")),
+                ],
+              ),
             ),
           ),
-        ),
+          //
+          // banner ad
+          if (_bannerAd != null)
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Container(
+                width: _bannerAd!.size.width.toDouble().w,
+                height: _bannerAd!.size.height.toDouble().h,
+                child: AdWidget(ad: _bannerAd!),
+              ),
+            ),
 
-        // 3. Food Spots
-        // header
-        Padding(
-          padding: const EdgeInsets.only(left: 25.0, top: 25, right: 25),
-          child: Text(
-            'Food Spots',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
-          ),
-        ),
-
-        // list
-        Container(
-          margin: const EdgeInsets.only(left: 25, top: 12),
-          height: 200.h,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 12),
-                  child: Container(
-                    width: 200.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.sp),
-                      color: Colors.orangeAccent,
-                    ),
-                    child: const Center(
-                      child: Text("Coming Soon"),
-                    ),
-                  ),
-                );
-              },
+          // 4. Special in Coorg
+          // header
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0, top: 25, right: 15),
+            child: Text(
+              'More in Coorg',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
             ),
           ),
-        ),
 
-        // 4. Special in Coorg
-        // header
-        Padding(
-          padding: const EdgeInsets.only(left: 25.0, top: 25, right: 25),
-          child: Text(
-            'More in Coorg',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
-          ),
-        ),
-
-        // list
-        Container(
-          margin: const EdgeInsets.only(left: 25, top: 12),
-          height: 180.h,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 12),
-                  child: Container(
-                    width: 250.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.sp),
-                      color: Colors.blueGrey,
+          // list
+          Container(
+            margin: const EdgeInsets.only(left: 12, top: 12),
+            height: 180.h,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 8.0, right: 12),
+                    child: Container(
+                      width: 250.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.sp),
+                        color: Colors.blueGrey,
+                      ),
+                      child: const Center(
+                        child: Text("Coming Soon"),
+                      ),
                     ),
-                    child: const Center(
-                      child: Text("Coming Soon"),
-                    ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
-        ),
 
-        ///-------------------------------------------------------
+          ///-------------------------------------------------------
 
-        SizedBox(
-          height: 50.h / 2,
-        ),
-        //
-        SizedBox(
-          width: 360.w,
-          height: 180.h,
-          child: Lottie.asset('assets/images/stayloading_anim.json'),
-        ),
+          SizedBox(
+            height: 50.h / 2,
+          ),
+          //
+          // SizedBox(
+          //   width: 360.w,
+          //   height: 180.h,
+          //   child: Lottie.asset('assets/images/stayloading_anim.json'),
+          // ),
 
-        SizedBox(
-          height: 10.h / 2,
-        ),
-        //
+          // SizedBox(
+          //   height: 10.h / 2,
+          // ),
+          // //
 
-        // // 2. Rooms
-        // // header
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 25.0, top: 25, right: 25),
-        //   child: Text(
-        //     'Rooms and Lodges',
-        //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
-        //   ),
-        // ),
+          // // 2. Rooms
+          // // header
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 25.0, top: 25, right: 25),
+          //   child: Text(
+          //     'Rooms and Lodges',
+          //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
+          //   ),
+          // ),
 
-        // // list
-        // Container(
-        //   margin: const EdgeInsets.only(left: 25, top: 12),
-        //   height: 150.h,
-        //   child: Padding(
-        //     padding: const EdgeInsets.only(right: 12),
-        //     child: ListView.builder(
-        //       scrollDirection: Axis.horizontal,
-        //       itemCount: 10,
-        //       itemBuilder: (context, index) {
-        //         return Padding(
-        //           padding: const EdgeInsets.only(top: 8.0, right: 12),
-        //           child: Container(
-        //             width: 200.w,
-        //             decoration: BoxDecoration(
-        //               borderRadius: BorderRadius.circular(10.sp),
-        //               color: Colors.green,
-        //             ),
-        //           ),
-        //         );
-        //       },
-        //     ),
-        //   ),
-        // ),
-      ],
+          // // list
+          // Container(
+          //   margin: const EdgeInsets.only(left: 25, top: 12),
+          //   height: 150.h,
+          //   child: Padding(
+          //     padding: const EdgeInsets.only(right: 12),
+          //     child: ListView.builder(
+          //       scrollDirection: Axis.horizontal,
+          //       itemCount: 10,
+          //       itemBuilder: (context, index) {
+          //         return Padding(
+          //           padding: const EdgeInsets.only(top: 8.0, right: 12),
+          //           child: Container(
+          //             width: 200.w,
+          //             decoration: BoxDecoration(
+          //               borderRadius: BorderRadius.circular(10.sp),
+          //               color: Colors.green,
+          //             ),
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //   ),
+          // ),
+        ],
+      ),
     );
   }
 

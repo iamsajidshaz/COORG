@@ -1,8 +1,8 @@
 import 'package:coorg/pagesss/navpages/about.dart';
-import 'package:coorg/pagesss/navpages/coming_soon_page.dart';
 import 'package:coorg/pagesss/navpages/gallery.dart';
 import 'package:coorg/pagesss/navpages/home.dart';
 import 'package:coorg/pagesss/navpages/explore_coorg.dart';
+import 'package:coorg/pagesss/navpages/my_bookings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   void navigateBottomBar(int index) {
     setState(() {
@@ -26,10 +26,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     const Home(),
     ExploreCoorgPage(),
-    // const CoorgTaxi(),
-    //  const ComingSoon(),
-    const ComingSoon(),
-
+    const Bookings(),
     GalleryPage(),
     const AboutPage(),
   ];
@@ -62,8 +59,8 @@ class _HomePageState extends State<HomePage> {
               label: 'Explorer',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.local_taxi),
-              label: 'TAXI',
+              icon: Icon(Icons.favorite),
+              label: 'BOOKINGS',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.photo_album_rounded),

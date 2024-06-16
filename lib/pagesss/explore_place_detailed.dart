@@ -95,6 +95,7 @@ class _DetailedPlaceState extends State<DetailedPlace> {
                           builder: (context) => ViewImage(
                                 imageUrl: widget.imageUrl,
                                 imageName: widget.place,
+                                isNetImage: "no",
                               )),
                     );
                   },
@@ -373,6 +374,7 @@ class _DetailedPlaceState extends State<DetailedPlace> {
                                     builder: (context) => ViewImage(
                                           imageUrl: widget.imageOne,
                                           imageName: widget.place,
+                                          isNetImage: "no",
                                         )),
                               );
                             },
@@ -397,6 +399,7 @@ class _DetailedPlaceState extends State<DetailedPlace> {
                                     builder: (context) => ViewImage(
                                           imageUrl: widget.imageTwo,
                                           imageName: widget.place,
+                                          isNetImage: "no",
                                         )),
                               );
                             },
@@ -423,6 +426,7 @@ class _DetailedPlaceState extends State<DetailedPlace> {
                                     builder: (context) => ViewImage(
                                           imageUrl: widget.imageThree,
                                           imageName: widget.place,
+                                          isNetImage: "no",
                                         )),
                               );
                             },

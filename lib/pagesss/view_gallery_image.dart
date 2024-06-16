@@ -5,8 +5,10 @@ import 'package:photo_view/photo_view.dart';
 class ViewImage extends StatelessWidget {
   final String imageUrl;
   final String imageName;
+  final String isNetImage;
   const ViewImage({
     super.key,
+    required this.isNetImage,
     required this.imageUrl,
     required this.imageName,
   });
@@ -27,9 +29,11 @@ class ViewImage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: PhotoView(
-        imageProvider: AssetImage(imageUrl),
-      ),
+      body: isNetImage == "yes"
+          ? PhotoView(
+              imageProvider: NetworkImage(imageUrl),
+            )
+          : PhotoView(imageProvider: AssetImage(imageUrl)),
     );
   }
 }

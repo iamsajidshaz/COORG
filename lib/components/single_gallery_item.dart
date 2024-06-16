@@ -21,6 +21,7 @@ class GalleryItem extends StatelessWidget {
               builder: (context) => ViewImage(
                     imageUrl: image,
                     imageName: imagePlace,
+                    isNetImage: "no",
                   )),
         );
       },

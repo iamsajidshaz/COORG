@@ -1,4 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coorg/booking/hs_booking_entry.dart';
+import 'package:coorg/pagesss/view_gallery_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +13,14 @@ class HomeStayView extends StatefulWidget {
   final String imageOne;
   final String imageTwo;
   final String imageThree;
+  final String activityOne;
+  final String activityTwo;
+  final String activityThree;
+  final String image;
+  final String label;
+  final String subTitle;
+  final String id;
+
   const HomeStayView({
     super.key,
     required this.fac1,
@@ -22,6 +31,13 @@ class HomeStayView extends StatefulWidget {
     required this.imageOne,
     required this.imageTwo,
     required this.imageThree,
+    required this.activityOne,
+    required this.activityTwo,
+    required this.activityThree,
+    required this.image,
+    required this.label,
+    required this.subTitle,
+    required this.id,
   });
 
   @override
@@ -46,6 +62,7 @@ class _HomeStayViewState extends State<HomeStayView> {
       widget.imageOne,
       widget.imageTwo,
       widget.imageThree,
+      widget.image,
     ];
   }
 
@@ -74,20 +91,36 @@ class _HomeStayViewState extends State<HomeStayView> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: AppBar(
-        title: Text("RICHBERRY- A Premium Plantation Villa"),
+        title: Text(widget.label),
       ),
       body: ListView(
         children: [
 //image
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 690.w / 2,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                image: const DecorationImage(
-                  image: AssetImage("assets/images/richberry.jpg"),
-                  fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ViewImage(
+                    imageName: widget.label,
+                    imageUrl: widget.image,
+                    isNetImage: "yes",
+                  ),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 690.w / 2,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      widget.image,
+                    ),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -99,7 +132,7 @@ class _HomeStayViewState extends State<HomeStayView> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Text(
-              "RICHBERRY- A Premium Plantation Villa",
+              widget.label,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 18.sp,
@@ -121,7 +154,7 @@ class _HomeStayViewState extends State<HomeStayView> {
                   width: 5.w,
                 ),
                 Text(
-                  "BM Road, 7th hoskote, Suntikoppa",
+                  widget.subTitle,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 14.sp,
@@ -285,17 +318,30 @@ class _HomeStayViewState extends State<HomeStayView> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 200.w,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.grey.shade400),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        image: DecorationImage(
-                          image: NetworkImage(imageList[index]),
-                          fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ViewImage(
+                                isNetImage: "yes",
+                                imageUrl: imageList[index],
+                                imageName: widget.label),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 200.w,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey.shade400),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          image: DecorationImage(
+                            image: NetworkImage(imageList[index]),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -331,7 +377,7 @@ class _HomeStayViewState extends State<HomeStayView> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               height: 50,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -345,13 +391,13 @@ class _HomeStayViewState extends State<HomeStayView> {
                   const SizedBox(
                     width: 15,
                   ),
-                  Icon(Icons.arrow_right),
+                  const Icon(Icons.arrow_right),
                   const SizedBox(
                     width: 20,
                   ),
                   Text(
-                    "Fire Camp",
-                    style: TextStyle(
+                    widget.activityOne,
+                    style: const TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
                     ),
@@ -363,7 +409,7 @@ class _HomeStayViewState extends State<HomeStayView> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               height: 50,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -377,13 +423,13 @@ class _HomeStayViewState extends State<HomeStayView> {
                   const SizedBox(
                     width: 15,
                   ),
-                  Icon(Icons.arrow_right),
+                  const Icon(Icons.arrow_right),
                   const SizedBox(
                     width: 20,
                   ),
                   Text(
-                    "Indoor Sports",
-                    style: TextStyle(
+                    widget.activityTwo,
+                    style: const TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
                     ),
@@ -395,7 +441,7 @@ class _HomeStayViewState extends State<HomeStayView> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               height: 50,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -409,13 +455,13 @@ class _HomeStayViewState extends State<HomeStayView> {
                   const SizedBox(
                     width: 15,
                   ),
-                  Icon(Icons.arrow_right),
+                  const Icon(Icons.arrow_right),
                   const SizedBox(
                     width: 20,
                   ),
                   Text(
-                    "Poker Club",
-                    style: TextStyle(
+                    widget.activityThree,
+                    style: const TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
                     ),
@@ -434,7 +480,16 @@ class _HomeStayViewState extends State<HomeStayView> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HsBookingEntry(
+                        id: widget.id,
+                      ),
+                    ),
+                  );
+                },
                 child: const Text(
                   "SEND BOOKING INQUIRY",
                   style: TextStyle(color: Colors.white),

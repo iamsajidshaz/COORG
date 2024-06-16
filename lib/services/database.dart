@@ -49,4 +49,18 @@ class DatabaseMethods {
       // Handle exceptions
     }
   }
+
+  //upload homestay to db
+  Future addHomeStayBooking(Map<String, dynamic> homestayBookingInfoMap) async {
+    return await FirebaseFirestore.instance
+        .collection("HomestayBookings")
+        .doc()
+        .set(homestayBookingInfoMap);
+  }
+
+  Future<Stream<QuerySnapshot>> getHomestayBookingDetails() async {
+    return FirebaseFirestore.instance
+        .collection("HomestayBookings")
+        .snapshots();
+  }
 }
